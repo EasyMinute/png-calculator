@@ -8,6 +8,8 @@ add_action( 'wp_enqueue_scripts', function() {
 	$sublimation_koefs   = get_field('sublimation_koefs', 'options');
 	$white_direct_koefs  = get_field('white_direct_koefs', 'options');
 	$color_direct_koefs  = get_field('color_direct_koefs', 'options');
+	$additional_urgency           = get_field('Additional', 'options')['urgency'];
+
 	$dtf_koefs           = get_field('dtf_koefs', 'options');
 
 	wp_localize_script( 'png-calculator-script', 'pngCalculatorData', array(
@@ -16,5 +18,6 @@ add_action( 'wp_enqueue_scripts', function() {
 		'whiteDirectKoefs' => $white_direct_koefs,
 		'colorDirectKoefs' => $color_direct_koefs,
 		'dtfKoefs' => $dtf_koefs,
+		'additionalUrgency' => $additional_urgency,
 	));
 });

@@ -79,7 +79,7 @@
   display: block;
   margin-bottom: 12px;
 }
-.pngcalc .pngcalc_label span {
+.pngcalc .pngcalc_label > span {
   display: block;
   font-weight: 600;
   font-size: 18px;
@@ -89,12 +89,162 @@
 .pngcalc .pngcalc_label input {
   display: block;
   width: 100%;
-  border-radius: 4px;
-  border: 1px solid #222;
-  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 50px;
+  padding: 5px 15px;
+  background: #fff;
+  border: 1px solid #e1e1e1;
+  color: #000;
+  font-size: 1rem;
+  height: 50px;
+  line-height: 30px;
+  background: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: inherit;
+}
+.pngcalc .pngcalc_label.checkbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 12px;
+}
+.pngcalc .pngcalc_label.checkbox input[type=checkbox] {
+  display: inline-block;
+  margin: 0 12px 0 0;
+  position: relative;
+  min-width: 20px;
+  min-height: 20px;
+  max-width: 20px;
+  max-height: 20px;
+  border-radius: 50%;
+  visibility: hidden;
   background-color: #fff;
+}
+.pngcalc .pngcalc_label.checkbox input[type=checkbox]:after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  position: absolute;
+  visibility: visible;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(calc(-50% - 6px), -50%);
+      -ms-transform: translate(calc(-50% - 6px), -50%);
+          transform: translate(calc(-50% - 6px), -50%);
+  background-color: #a9a9a9;
+}
+.pngcalc .pngcalc_label.checkbox input[type=checkbox]:checked:after {
+  background-color: #76B00A;
+  -webkit-transform: translate(calc(-50% + 6px), -50%);
+      -ms-transform: translate(calc(-50% + 6px), -50%);
+          transform: translate(calc(-50% + 6px), -50%);
+}
+.pngcalc .pngcalc_label.checkbox input[type=checkbox]:before {
+  content: "";
+  width: 32px;
+  height: 20px;
+  border-radius: 20px;
+  border: 1px solid #a9a9a9;
+  position: absolute;
+  visibility: visible;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: #fff;
+}
+.pngcalc .pngcalc_label.checkbox span {
+  display: inline-block;
+  font-size: 14px;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.pngcalc_button--wrap {
+  margin-bottom: 20px;
+}
+.pngcalc_button--wrap p {
+  display: block;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 20px;
+  margin-bottom: 8px;
+  margin-top: 0;
+}
+.pngcalc_button--wrap .pngcalc_button {
+  padding: 10px;
   font-size: 16px;
-  line-height: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #76B00A;
+  background-color: rgba(0, 0, 0, 0);
+  border-style: solid;
+  border-width: 2px 2px 2px 2px;
+  border-color: #76B00A;
+  border-radius: 50px 50px 50px 50px;
+  -webkit-box-shadow: 19px 19px 40px 0px rgba(0, 0, 0, 0.1);
+          box-shadow: 19px 19px 40px 0px rgba(0, 0, 0, 0.1);
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.pngcalc_button--wrap .pngcalc_button:hover {
+  color: #fff;
+  background-color: #76B00A;
+}
+
+.pngcalc .select2-container--default {
+  margin-bottom: 0 !important;
+}
+.pngcalc .select2-container--default .select2-selection--single {
+  margin-bottom: 0;
+  border-radius: 50px;
+  padding: 5px 15px;
+  background: #fff;
+  border: 1px solid #e1e1e1;
+  color: #000;
+  font-size: 1rem;
+  height: 50px;
+  line-height: 30px;
+  background: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: inherit;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.pngcalc .select2-container--default .select2-selection__arrow {
+  top: 50% !important;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+.pngcalc .select2-container--default.select2-container--open .select2-selection--single {
+  border-radius: 50px !important;
+}
+
+.select2-dropdown {
+  top: 8px !important;
+  border-radius: 8px !important;
+  border: 1px solid #e1e1e1 !important;
+}
+.select2-dropdown .select2-results__option {
+  font-size: 1rem;
+  font-family: inherit;
+}
+.select2-dropdown .select2-results__option--highlighted {
+  background-color: #76B00A !important;
 }
 /*!*************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/select2/dist/css/select2.css ***!

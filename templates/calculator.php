@@ -1,5 +1,5 @@
 <?php
-
+$print_discounts = get_field( 'print_discounts', 'options' );
 
 ?>
 
@@ -70,9 +70,66 @@
                     </div>
                 </div>
 
-                <!-- Add and Remove buttons -->
-                <button class="pngcalc_button" id="addPrint"><?php echo __('Додати друк', 'pngcalc') ?></button>
-                <button class="pngcalc_button" id="removePrint"><?php echo __('Видалити друк', 'pngcalc') ?></button>
+                <div class="pngcalc_button--wrap">
+                    <p>
+                        <?php echo __('Опції друку', 'pngcalc') ?>
+                    </p>
+                    <!-- Add and Remove buttons -->
+                    <button class="pngcalc_button" id="addPrint"><?php echo __('Додати друк', 'pngcalc') ?></button>
+                    <button class="pngcalc_button" id="removePrint"><?php echo __('Видалити друк', 'pngcalc') ?></button>
+                </div>
+
+                <?php if(current_user_can('administrator')): ?>
+
+                    <label class="pngcalc_label select discountGroup">
+                        <span><?php echo __('Група знижок', 'pngcalc') ?></span>
+                        <select name="printDiscounts" class="printDiscounts">
+                            <option value="1"><?php echo __('Без знижки', 'pngcalc') ?></option>
+                            <?php foreach($print_discounts as $discount): ?>
+                                <option value="<?php echo (100 - $discount['value']) / 100 ?>">
+                                    <?php echo $discount['title'] ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </label>
+
+                    <?php $additional = get_field('additional', 'options'); ?>
+
+                    <?php if(!empty($additional['urgency'])): ?>
+                        <label for="printUrgency" class="pngcalc_label checkbox">
+                            <input type="checkbox" name="printUrgency" id="printUrgency" value="1">
+                            <span>
+                                <?php echo __('Терміновість (націнка залежиить від тиражу): Застосовується у випадку не стандартних термінів виготолвення. Швидше за 5-7 робочих днів') ?>
+                            </span>
+                        </label>
+                    <?php endif; ?>
+
+                    <?php if(!empty($additional['clients_items'])): ?>
+                        <label for="printClientProduct" class="pngcalc_label checkbox">
+                            <input type="checkbox" name="printClientProduct" id="printClientProduct" value="<?php echo $additional['clients_items'] ?>">
+                            <span>
+                                <?php echo __('Продукція Клієнта') ?>
+                            </span>
+                        </label>
+                    <?php endif; ?>
+                    <?php if(!empty($additional['difficulty_koef'])): ?>
+                        <label for="printDifficulty" class="pngcalc_label checkbox">
+                            <input type="checkbox" name="printDifficulty" id="printDifficulty" value="<?php echo $additional['difficulty_koef'] ?>">
+                            <span>
+                                <?php echo __('Складність нанесення: (включається на такі типи продуку: тенти, робочий одяг з друком на кишеню, нанесення на шви, продукція з додатковою фурнітурою, рюкзаки, парасолі)') ?>
+                            </span>
+                        </label>
+                    <?php endif; ?>
+                    <?php if(!empty($additional['package_add'])): ?>
+                        <label for="printPackaging" class="pngcalc_label checkbox">
+                            <input type="checkbox" name="printPackaging" id="printPackaging" value="<?php echo $additional['package_add'] ?>">
+                            <span>
+                                <?php echo __('Додаткове розпакування-запакування ( яке потребує додаткового зусилля)') ?>
+                            </span>
+                        </label>
+                    <?php endif; ?>
+
+                <?php endif; ?>
 
                 <label for="print_final_price" class="pngcalc_label">
                     <span>
@@ -86,8 +143,19 @@
                     </span>
                     <input type="number" name="print_sum" id="print_sum" readonly>
                 </label>
+
             </fieldset>
 
+            <div class="pngcalc__footer">
+                <p class="pngcalc__footer__row">
+                    <?php echo __('Загальна вартість одиниці: ') ?>
+                    <span id="totalPrice">0</span>
+                </p>
+                <p class="pngcalc__footer__row">
+		            <?php echo __('Загальна сума: ') ?>
+                    <span id="totalSum">0</span>
+                </p>
+            </div>
         </form>
     </div>
 </section>
