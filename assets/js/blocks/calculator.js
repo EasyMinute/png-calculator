@@ -12,10 +12,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to calculate final price and sum
     function calculateFinalPriceAndSum() {
+
         const productQuantity = parseInt(productQuantityInput.value) || 0;
         const productPrice = parseFloat(productPriceInput.value) || 0;
 
-        if (productQuantity === 0 || productPrice === 0) {
+
+        if (productQuantity === 0 ) {
             productFinalPriceInput.value = '';
             productSumInput.value = '';
             return;
@@ -46,11 +48,14 @@ document.addEventListener('DOMContentLoaded', function () {
         productFinalPriceInput.value = productFinalPrice.toFixed(2);
         productSumInput.value = productSum.toFixed(2);
 
+        console.log('productSumInput', productSum)
+
         updateTotalSpans(); // Update spans after recalculating
     }
 
     productQuantityInput.addEventListener('input', calculateFinalPriceAndSum);
     productPriceInput.addEventListener('input', calculateFinalPriceAndSum);
+    productPriceInput.addEventListener('change', calculateFinalPriceAndSum);
 
     // PRINT CALCULATION
     const maxPrints = 5;

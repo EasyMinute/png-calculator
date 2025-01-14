@@ -36,7 +36,10 @@
     padding: 24px 0;
     border: none;
     border-radius: 12px;
-    //background-color: #f2f2f2;
+    @media screen and (max-width: 920px){
+      max-width: 100%;
+      padding: 0;
+    }
 
 
     &__title {
@@ -55,6 +58,10 @@
       .select {
         width: 100%;
         max-width: calc(50% - 4px);
+        @media screen and (max-width: 920px) {
+          max-width: 100%;
+          margin-bottom: 12px;
+        }
 
         select {
           width: 100%;
@@ -70,7 +77,7 @@
     margin-bottom: 12px;
 
     & > span {
-      display: block;
+      display: inline-block;
       font-weight: 600;
       font-size: 18px;
       line-height: 20px;
@@ -92,6 +99,23 @@
       background: none;
       box-sizing: border-box;
       font-family: inherit;
+
+      &:read-only {
+        display: inline;
+        width: auto;
+        border: none;
+        font-size: 22px;
+        resize: none;
+        counter-increment: none;
+        -webkit-appearance: none;
+        appearance: none;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          appearance: none;
+        }
+      }
     }
 
     &.checkbox {
@@ -185,6 +209,11 @@
     box-shadow: 19px 19px 40px 0px rgb(0 0 0 / 10%);
     transition: all .3s;
     cursor: pointer;
+    text-align: center;
+    @media screen and (max-width: 980px) {
+      width: 100%;
+      margin-bottom: 8px;
+    }
 
     &:hover {
       color: #fff;
