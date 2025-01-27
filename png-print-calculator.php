@@ -2,7 +2,7 @@
 /**
  * Plugin Name: PNG Print Calculator
  * Description: A plugin to calculate product prices based on user input. Requires ACF Pro.
- * Version: 1.0
+ * Version: 1.0.2
  * Author: Yurii Nykolyshyn
  */
 
@@ -31,5 +31,6 @@ define( 'PNG_CALCULATOR_URL', plugin_dir_url( __FILE__ ) );
 include_once PNG_CALCULATOR_PATH . 'includes/functions.php';
 include_once PNG_CALCULATOR_PATH . 'includes/scripts.php';
 include_once PNG_CALCULATOR_PATH . 'includes/acf-fields.php';
+include_once PNG_CALCULATOR_PATH . 'includes/crm_integration.php';
 
 

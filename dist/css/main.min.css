@@ -2,8 +2,7 @@
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/sass-loader/dist/cjs.js!./scss/main.scss ***!
   \*******************************************************************************************************************************************************************************/
 * {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 #png-calculator {
@@ -17,27 +16,28 @@
   margin: auto;
 }
 
-.pngcalc {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  width: 100%;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  background-color: #fafafa;
-  padding: 32px 24px;
-  border-radius: 20px;
-}
 .pngcalc .pngcalc_title {
   width: 100%;
-  -webkit-margin-before: 0;
-          margin-block-start: 0;
+  margin-block-start: 0;
   margin: 0 0 24px;
   font-size: 40px;
   line-height: 48px;
+}
+.pngcalc .pngcalc__step {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+  background-color: #fafafa;
+  padding: 32px 24px;
+  border-radius: 20px;
+  overflow: hidden;
+  max-height: 1200px;
+  transition: all 0.3s;
+}
+.pngcalc .pngcalc__step.hidden {
+  max-height: 0;
+  padding: 0 24px;
 }
 .pngcalc .pngcalc__block {
   width: 100%;
@@ -55,22 +55,14 @@
 .pngcalc .pngcalc__block__title {
   font-size: 24px;
   line-height: 28px;
-  -webkit-margin-before: 0;
-          margin-block-start: 0;
+  margin-block-start: 0;
   margin: 0 0 24px;
 }
 .pngcalc .pngcalc__block__group {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 .pngcalc .pngcalc__block__group .select {
   width: 100%;
@@ -111,8 +103,7 @@
   height: 50px;
   line-height: 30px;
   background: none;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   font-family: inherit;
 }
 .pngcalc .pngcalc_label input:-moz-read-only {
@@ -142,12 +133,8 @@
   appearance: none;
 }
 .pngcalc .pngcalc_label.checkbox {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   margin-bottom: 12px;
 }
 .pngcalc .pngcalc_label.checkbox input[type=checkbox] {
@@ -171,16 +158,12 @@
   visibility: visible;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(calc(-50% - 6px), -50%);
-      -ms-transform: translate(calc(-50% - 6px), -50%);
-          transform: translate(calc(-50% - 6px), -50%);
+  transform: translate(calc(-50% - 6px), -50%);
   background-color: #a9a9a9;
 }
 .pngcalc .pngcalc_label.checkbox input[type=checkbox]:checked:after {
   background-color: #76B00A;
-  -webkit-transform: translate(calc(-50% + 6px), -50%);
-      -ms-transform: translate(calc(-50% + 6px), -50%);
-          transform: translate(calc(-50% + 6px), -50%);
+  transform: translate(calc(-50% + 6px), -50%);
 }
 .pngcalc .pngcalc_label.checkbox input[type=checkbox]:before {
   content: "";
@@ -192,9 +175,7 @@
   visibility: visible;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   background-color: #fff;
 }
 .pngcalc .pngcalc_label.checkbox span {
@@ -215,7 +196,8 @@
   margin-bottom: 8px;
   margin-top: 0;
 }
-.pngcalc_button--wrap .pngcalc_button {
+
+.pngcalc_button {
   padding: 10px;
   font-size: 16px;
   font-weight: 700;
@@ -226,21 +208,18 @@
   border-width: 2px 2px 2px 2px;
   border-color: #76B00A;
   border-radius: 50px 50px 50px 50px;
-  -webkit-box-shadow: 19px 19px 40px 0px rgba(0, 0, 0, 0.1);
-          box-shadow: 19px 19px 40px 0px rgba(0, 0, 0, 0.1);
-  -webkit-transition: all 0.3s;
-  -o-transition: all 0.3s;
+  box-shadow: 19px 19px 40px 0px rgba(0, 0, 0, 0.1);
   transition: all 0.3s;
   cursor: pointer;
   text-align: center;
 }
 @media screen and (max-width: 980px) {
-  .pngcalc_button--wrap .pngcalc_button {
+  .pngcalc_button {
     width: 100%;
     margin-bottom: 8px;
   }
 }
-.pngcalc_button--wrap .pngcalc_button:hover {
+.pngcalc_button:hover {
   color: #fff;
   background-color: #76B00A;
 }
@@ -259,21 +238,14 @@
   height: 50px;
   line-height: 30px;
   background: none;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   font-family: inherit;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
 .pngcalc .select2-container--default .select2-selection__arrow {
   top: 50% !important;
-  -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 .pngcalc .select2-container--default.select2-container--open .select2-selection--single {
   border-radius: 50px !important;

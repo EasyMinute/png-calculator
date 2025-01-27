@@ -14,13 +14,7 @@
 }
 
 .pngcalc {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  justify-content: space-between;
-  background-color: #fafafa;
-  padding: 32px 24px;
-  border-radius: 20px;
+
 
   .pngcalc_title {
     width: 100%;
@@ -28,6 +22,24 @@
     margin: 0 0 24px;
     font-size: 40px;
     line-height: 48px;
+  }
+
+  .pngcalc__step {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+    background-color: #fafafa;
+    padding: 32px 24px;
+    border-radius: 20px;
+    overflow: hidden;
+    max-height: 1200px;
+    transition: all .3s;
+
+    &.hidden {
+      max-height: 0;
+      padding: 0 24px;
+    }
   }
 
   .pngcalc__block {
@@ -195,30 +207,31 @@
     margin-top: 0;
   }
 
-  .pngcalc_button {
-    padding: 10px;
-    font-size: 16px;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: #76B00A;
-    background-color: rgba(0, 0, 0, 0);
-    border-style: solid;
-    border-width: 2px 2px 2px 2px;
-    border-color: #76B00A;
-    border-radius: 50px 50px 50px 50px;
-    box-shadow: 19px 19px 40px 0px rgb(0 0 0 / 10%);
-    transition: all .3s;
-    cursor: pointer;
-    text-align: center;
-    @media screen and (max-width: 980px) {
-      width: 100%;
-      margin-bottom: 8px;
-    }
+}
 
-    &:hover {
-      color: #fff;
-      background-color: #76B00A;
-    }
+.pngcalc_button {
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #76B00A;
+  background-color: rgba(0, 0, 0, 0);
+  border-style: solid;
+  border-width: 2px 2px 2px 2px;
+  border-color: #76B00A;
+  border-radius: 50px 50px 50px 50px;
+  box-shadow: 19px 19px 40px 0px rgb(0 0 0 / 10%);
+  transition: all .3s;
+  cursor: pointer;
+  text-align: center;
+  @media screen and (max-width: 980px) {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  &:hover {
+    color: #fff;
+    background-color: #76B00A;
   }
 }
 
