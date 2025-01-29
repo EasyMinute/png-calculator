@@ -23,13 +23,13 @@ $print_discounts = get_field( 'print_discounts', 'options' );
 
                     <label for="product_quantity" class="pngcalc_label">
                         <span>
-                            <?php echo __('Кількість товарів', 'pngcalc') ?>
+                            <?php echo __('К-сть товарів/нанесень', 'pngcalc') ?>
                         </span>
                         <input type="number" name="product_quantity" id="product_quantity">
                     </label>
                     <label for="product_price" class="pngcalc_label">
                         <span>
-                            <?php echo __('Роздрібна ціна', 'pngcalc') ?>
+                            <?php echo __('Ціна з сайту', 'pngcalc') ?>
                         </span>
                         <input type="number" name="product_price" <?php echo $price ? 'readonly' : '' ?> id="product_price" value="<?php echo $price ?? '' ?>">
                     </label>
@@ -137,29 +137,29 @@ $print_discounts = get_field( 'print_discounts', 'options' );
 
                     <label for="print_final_price" class="pngcalc_label">
                         <span>
-                            <?php echo __('Ціна за принт 1 шт', 'pngcalc') ?>
+                            <?php echo __('Ціна за друк 1 шт', 'pngcalc') ?>
                         </span>
                         <input type="number" name="print_final_price" id="print_final_price" readonly>
                     </label>
                     <label for="print_sum" class="pngcalc_label">
                         <span>
-                            <?php echo __('Сума за принт', 'pngcalc') ?>
+                            <?php echo __('Сума за друк', 'pngcalc') ?>
                         </span>
                         <input type="number" name="print_sum" id="print_sum" readonly>
                     </label>
 
                 </fieldset>
                 <div class="pngcalc__footer">
-                <p class="pngcalc__footer__row">
-                    <?php echo __('Загальна вартість одиниці: ') ?>
-                    <span id="totalPrice">0</span>
-                </p>
-                <p class="pngcalc__footer__row">
-		            <?php echo __('Загальна сума: ') ?>
-                    <span id="totalSum">0</span>
-                </p>
-                <button class="pngcalc_button pngcalc_stepper" data-step="user" id="nextStep"><?php echo __('Надіслати розрахунок', 'pngcalc') ?></button>
-            </div>
+                    <p class="pngcalc__footer__row">
+                        <?php echo __('Загальна вартість одиниці: ') ?>
+                        <span id="totalPrice">0</span>
+                    </p>
+                    <p class="pngcalc__footer__row">
+                        <?php echo __('Загальна сума: ') ?>
+                        <span id="totalSum">0</span>
+                    </p>
+                    <button class="pngcalc_button pngcalc_stepper" data-step="user" id="nextStep"><?php echo __('Надіслати розрахунок', 'pngcalc') ?></button>
+                </div>
             </div>
             <div class="pngcalc__step hidden" data-step="user">
                 <fieldset class="pngcalc__block">
@@ -191,41 +191,17 @@ $print_discounts = get_field( 'print_discounts', 'options' );
                     </div>
                 </fieldset>
             </div>
+
+            <div class="pngcalc__step hidden" data-step="final">
+                <div>
+                    <p>
+                        <?php echo __("Дякуємо за запит! Форму надіслано на обробку, наш менеджер звʼяжеться з вами найближчим часом.", "pngcalc"); ?>
+                    </p>
+                    <button class="pngcalc_button pngcalc_stepper" data-step="calc"><?php echo __('Заповнити знову', 'pngcalc') ?></button>
+                </div>
+            </div>
         </form>
     </div>
 </section>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const form = document.getElementById('png-calculator-form'); // Replace with your form's ID
-        if (form) {
-            form.addEventListener('submit', function (e) {
-                e.preventDefault();
 
-                const formData = new FormData(form);
-                console.log('formData', formData)
-                const xhr = new XMLHttpRequest();
-
-                // Adding a special parameter 'action' to indicate which action to call
-                formData.append('action', 'send_to_crm_action');
-
-                xhr.open('POST', '<?php echo admin_url( 'admin-ajax.php' ); ?>', true);
-                xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-                        alert('Форму надіслано!')
-                        location.reload();
-                        console.log('CRM data sent successfully:', xhr.responseText);
-                    } else if (xhr.readyState === 4) {
-                        alert('Помилка надсилання')
-                        console.error('Error sending data to CRM:', xhr.status, xhr.statusText);
-                    }
-                };
-
-                xhr.send(formData);
-            });
-        }
-    });
-
-</script>

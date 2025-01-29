@@ -73,19 +73,37 @@ function send_calculations_to_crm() {
 	$email = sanitize_email($_POST['user_email']);
 	$phone = sanitize_text_field($_POST['user_phone']);
 
-	$calc_note = 'Кількість товару: ' . $_POST['product_quantity'] . '; ' .
-	             'Роздрібна ціна: ' . $_POST['product_price'] . ' ;  ' .
-	             'Ціна за 1 шт: ' . $_POST['product_final_price'] . ' ;  ' .
-	             'Ціна за тираж: ' . $_POST['product_sum'] . ' ;  ' .
-	             'Ціна за принт 1 шт: ' . $_POST['print_final_price'] . ' ;  ' .
-	             'Сума за принт: ' . $_POST['print_sum'] ;
+	$calc_note = "Кількість товару: " . $_POST["product_quantity"] . "; \n " .
+	             "Роздрібна ціна: " . $_POST["product_price"] . "; \n " .
+	             "Ціна за 1 шт: " . $_POST["product_final_price"] . "; \n " .
+	             "Ціна за тираж: " . $_POST["product_sum"] . "; \n " .
+	             "Ціна за принт 1 шт: " . $_POST["print_final_price"] . "; \n " .
+	             "Сума за принт: " . $_POST["print_sum"] . "; \n " .
+
+	$print_formats = isset($_POST["printFormats"]) ? json_decode(stripslashes($_POST["printFormats"]), true) : [];
+	$print_types = isset($_POST["printTypes"]) ? json_decode(stripslashes($_POST["printTypes"]), true) : [];
+
+	if (!empty($print_formats) && !empty($print_types)) {
+		foreach ($print_formats as $key => $format) {
+			$calc_note .= "(Тип друку: " . $print_types[$key] . " - Формат дурку: " . $format . "); \n ";
+		}
+	}
+
+	$calc_note .= "Загальна вартість одиниці: " . $_POST["print_sum"] . "; \n " .
+	              "Загальна сума: " . $_POST["print_sum"] ;
+
+	if (isset($_POST['product_url'])) {
+		$calc_note .= "\n Посилання на продукт: " . $_POST["product_url"] ;
+	}
+
+	$formatted_calc_note = $calc_note;
 
 	var_dump($_POST);
 
      $data = [
-		"title" => 'Прорахунок PNG Calculator', //ACF ADD FIELD
+		"title" => "Прорахунок PNG Calculator", //ACF ADD FIELD
 		"source_id" => 57, //ACF ADD FIELD
-		"manager_comment" => $calc_note, // коментар до заявки
+		"manager_comment" => $formatted_calc_note, // коментар до заявки
 		"manager_id" => 74, //ACF ADD FIELD
 		"pipeline_id" => 2, //ACF ADD FIELD
 		"contact" => [
