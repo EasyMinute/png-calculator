@@ -49,17 +49,26 @@ function send_to_crm() {
 
 }
 
-
 // Hook to handle the Ajax request for logged-in users
 add_action('wp_ajax_send_to_crm_action', 'send_calculations_to_crm');
+
+
+//add_action('init', function () {
+//	header("Access-Control-Allow-Origin: *"); // Allow all origins (*), change this to a specific domain if needed
+//	header("Access-Control-Allow-Methods: POST, GET, OPTIONS"); // Allow specific HTTP methods
+//	header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Authorization"); // Allow required headers
+//});
+
 
 // Hook to handle the Ajax request for non-logged-in users (if needed)
 add_action('wp_ajax_nopriv_send_to_crm_action', 'send_calculations_to_crm');
 
 function send_calculations_to_crm() {
 
-	$api_url = 'https://openapi.keycrm.app/v1/pipelines/cards'; // Replace with the actual KeyCRM endpoint
-	$api_key = 'YjRmYWRmY2Y4YzExYTEyOTg4MzM0MzI3YzI4OWNlODA0ZWMzODVmYg'; // Optionally use the localized API key
+
+	$crm_otions = get_field('png_crm_options', 'options');
+	$api_url = $crm_otions['api_url'] ?? 'https://openapi.keycrm.app/v1/pipelines/cards'; // Replace with the actual KeyCRM endpoint
+	$api_key = $crm_otions['api_key'] ?? 'YjRmYWRmY2Y4YzExYTEyOTg4MzM0MzI3YzI4OWNlODA0ZWMzODVmYg'; // Optionally use the localized API key
 
 	// Check if it's a valid POST request
 	if (!isset($_POST['user_name'])) {
@@ -89,8 +98,8 @@ function send_calculations_to_crm() {
 		}
 	}
 
-	$calc_note .= "Загальна вартість одиниці: " . $_POST["print_sum"] . "; \n " .
-	              "Загальна сума: " . $_POST["print_sum"] ;
+	$calc_note .= "Загальна вартість одиниці: " . $_POST["totalPrice"] . "; \n " .
+	              "Загальна сума: " . $_POST["totalSum"] ;
 
 	if (isset($_POST['product_url'])) {
 		$calc_note .= "\n Посилання на продукт: " . $_POST["product_url"] ;
@@ -101,11 +110,11 @@ function send_calculations_to_crm() {
 	var_dump($_POST);
 
      $data = [
-		"title" => "Прорахунок PNG Calculator", //ACF ADD FIELD
-		"source_id" => 57, //ACF ADD FIELD
+		"title" => $crm_otions['title'], //ACF ADD FIELD
+		"source_id" => $crm_otions['source_id'], //ACF ADD FIELD
 		"manager_comment" => $formatted_calc_note, // коментар до заявки
-		"manager_id" => 74, //ACF ADD FIELD
-		"pipeline_id" => 2, //ACF ADD FIELD
+		"manager_id" => $crm_otions['manager_id'], //ACF ADD FIELD
+		"pipeline_id" => $crm_otions['pipeline_id'], //ACF ADD FIELD
 		"contact" => [
 			"full_name" => $full_name, // ПІБ покупця
 			"email" => $email, // email покупця
@@ -131,7 +140,7 @@ function send_calculations_to_crm() {
 
 // відправляємо на сервер
 	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, "https://openapi.keycrm.app/v1/pipelines/cards");
+	curl_setopt($ch, CURLOPT_URL, $api_url);
 	curl_setopt($ch, CURLOPT_POST, 1);
 	curl_setopt($ch, CURLOPT_POSTFIELDS,$data_string);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
@@ -151,9 +160,11 @@ function send_calculations_to_crm() {
 
 	// Return the response to the frontend
 	if ($result === false) {
+		echo json_encode($data);
 		echo json_encode(['error' => 'Failed to send to CRM']);
 	} else {
-		echo $result; // You can return the result from CRM if needed
+		echo json_encode($data);
+		echo json_encode($result); // You can return the result from CRM if needed
 	}
 
 	wp_die(); // Always call wp_die() to properly terminate the request

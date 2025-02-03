@@ -65,6 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 } else if (xhr.readyState === 4) {
                     alert('Помилка надсилання');
                     console.error('Error sending data to CRM:', xhr.status, xhr.statusText);
+                    console.log('xhr', xhr)
                 }
             };
 

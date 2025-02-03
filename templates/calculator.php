@@ -7,9 +7,7 @@ $print_discounts = get_field( 'print_discounts', 'options' );
 <section id="png-calculator">
     <div class="container">
 
-        <h1 class="pngcalc_title">
-	        <?php echo __('Розрахунок вартості', 'pngcalc') ?>
-        </h1>
+
         <form id="png-calculator-form" class="pngcalc">
             <div class="pngcalc__step" data-step="calc">
                 <fieldset class="pngcalc__block">
@@ -60,9 +58,9 @@ $print_discounts = get_field( 'print_discounts', 'options' );
                                 <select name="printType[]" class="printType">
                                     <option value=""><?php echo __('Оберіть тип', 'pngcalc') ?></option>
                                     <option value="sublimation"><?php echo __('Сублімаційний', 'pngcalc') ?></option>
-                                    <option value="whiteDirect"><?php echo __('Прямий друк на білих тканинах', 'pngcalc') ?></option>
-                                    <option value="colorDirect"><?php echo __('Прямий друк на кольорових тканинах', 'pngcalc') ?></option>
+                                    <option value="silkScreen"><?php echo __('Шовкотрафаретний', 'pngcalc') ?></option>
                                     <option value="dtf"><?php echo __('DTF', 'pngcalc') ?></option>
+                                    <option value="uvDtf"><?php echo __('UV DTF', 'pngcalc') ?></option>
                                 </select>
                             </label>
                             <label class="pngcalc_label select">

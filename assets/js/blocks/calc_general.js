@@ -17,4 +17,28 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+    let popupTrigger = document.querySelector('#png-calculator-popup-trigger')
+    if (popupTrigger) {
+        popupTrigger.addEventListener('click', function (e){
+            e.preventDefault();
+            let popupCalc = document.querySelector('#png-calculator-popup')
+            console.log('popupCalc', popupCalc)
+            if (popupCalc) {
+                popupCalc.classList.add('active');
+            }
+        })
+    }
+
+    document.addEventListener('click', function (e) {
+        let popupCalc = document.querySelector('#png-calculator-popup');
+        let calculatorSection = document.querySelector('#png-calculator');
+
+        if (popupCalc && calculatorSection) {
+            // Check if the click target is outside the calculator section
+            if (!calculatorSection.contains(e.target) && !e.target.closest('#png-calculator-popup-trigger')) {
+                popupCalc.classList.remove('active');
+            }
+        }
+    });
 });

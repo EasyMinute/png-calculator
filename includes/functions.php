@@ -9,6 +9,12 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 		'capability'    => 'manage_options',
 		'redirect'      => false
 	));
+
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'CRM Options',
+		'menu_title'	=> 'CRM Options',
+		'parent_slug'	=> 'png-calculator',
+	));
 }
 
 // Shortcode for Calculator
@@ -18,6 +24,16 @@ function png_calculator_shortcode() {
 	return ob_get_clean();
 }
 add_shortcode( 'png_calculator', 'png_calculator_shortcode' );
+
+function png_calculator_popup_shortcode() {
+	ob_start();
+	echo "<button id='png-calculator-popup-trigger' class='pngcalc_button png-calculator-popup-trigger'>". __('Додати друк', 'pngcalc') ."</button>";
+	echo "<div class='png-modal' id='png-calculator-popup'>";
+	include PNG_CALCULATOR_PATH . 'templates/calculator.php';
+	echo "</div>";
+	return ob_get_clean();
+}
+add_shortcode( 'png_calculator_popup', 'png_calculator_popup_shortcode' );
 
 // Shortcode for Calculator Page Button
 function png_calculator_button_shortcode( $atts ) {

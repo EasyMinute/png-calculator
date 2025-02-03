@@ -67,8 +67,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const printSumInput = document.getElementById('print_sum');
     const koefsMap = {
         sublimation: pngCalculatorData.sublimationKoefs,
-        whiteDirect: pngCalculatorData.whiteDirectKoefs,
-        colorDirect: pngCalculatorData.colorDirectKoefs,
+        silkScreen: pngCalculatorData.silkScreenKoefs,
+        uvDtf: pngCalculatorData.uvDtfKoefs,
         dtf: pngCalculatorData.dtfKoefs,
     };
     const urgencyKoefs = pngCalculatorData.additionalUrgency
@@ -185,6 +185,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         // Apply multipliers for `printClientProduct` and `printDifficulty` checkboxes
+        let printClientProduct = document.getElementById('printClientProduct');
         if(document.getElementById('printClientProduct')) {
             const printClientProduct = document.getElementById('printClientProduct').checked
                 ? parseFloat(document.getElementById('printClientProduct').value) || 1
@@ -212,6 +213,32 @@ document.addEventListener('DOMContentLoaded', function () {
         if(document.querySelector('.printDiscounts')) {
             const printDiscount = parseFloat(document.querySelector('.printDiscounts').value) || 1; // Default to no discount
             finalSum *= printDiscount;
+        }
+
+
+        //Sync with clientProductsCheckbox and price_input
+        let previousProductPrice = productPriceInput.value; // Store the original price
+        if (printClientProduct && productPriceInput) {
+            // When checkbox is checked, store current price and set product_price to 0
+            printClientProduct.addEventListener('change', function () {
+                if (this.checked) {
+                    previousProductPrice = productPriceInput.value; // Store the price before setting to 0
+                    productPriceInput.value = 0;
+                    productPriceInput.dispatchEvent(new Event('input')); // Trigger recalculation
+                } else {
+                    // Restore the previous product price when unchecked
+                    productPriceInput.value = previousProductPrice;
+                    productPriceInput.dispatchEvent(new Event('input')); // Trigger recalculation
+                }
+            });
+
+            // When product_price is changed to a number > 0, uncheck the checkbox
+            productPriceInput.addEventListener('input', function () {
+                if (parseFloat(this.value) > 0 && printClientProductCheckbox.checked) {
+                    printClientProductCheckbox.checked = false;
+                    printClientProductCheckbox.dispatchEvent(new Event('change')); // Trigger recalculation
+                }
+            });
         }
 
         // Update the final price and sum

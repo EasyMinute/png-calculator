@@ -7,18 +7,18 @@ add_action( 'wp_enqueue_scripts', function() {
 
 	$product_price_koefs = get_field('product_price_koefs', 'options');
 	$sublimation_koefs   = get_field('sublimation_koefs', 'options');
-	$white_direct_koefs  = get_field('white_direct_koefs', 'options');
-	$color_direct_koefs  = get_field('color_direct_koefs', 'options');
-	$additional_urgency           = get_field('Additional', 'options')['urgency'];
-
+	$silk_screen_koefs  = get_field('silk_screen_koefs', 'options');
+	$uv_dtf_koefs  = get_field('uv_dtf_koefs', 'options');
 	$dtf_koefs           = get_field('dtf_koefs', 'options');
+
+	$additional_urgency           = get_field('Additional', 'options')['urgency'];
 
 	wp_localize_script( 'png-calculator-script', 'pngCalculatorData', array(
 		'productPriceKoefs' => $product_price_koefs,
 		'sublimationKoefs' => $sublimation_koefs,
-		'whiteDirectKoefs' => $white_direct_koefs,
-		'colorDirectKoefs' => $color_direct_koefs,
+		'silkScreenKoefs' => $silk_screen_koefs,
 		'dtfKoefs' => $dtf_koefs,
+		'uvDtfKoefs' => $uv_dtf_koefs,
 		'additionalUrgency' => $additional_urgency,
 	));
 });
