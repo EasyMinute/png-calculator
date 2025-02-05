@@ -92,6 +92,7 @@
   font-size: 14px;
   line-height: 16px;
   margin-bottom: 8px;
+  margin-left: 8px;
   min-width: -moz-max-content;
   min-width: max-content;
 }
@@ -201,8 +202,23 @@
   width: 100%;
   margin-bottom: 0;
 }
+.pngcalc .pngcalc_label.checkbox .select2-selection--single {
+  border-radius: 50px !important;
+  height: auto !important;
+}
+.pngcalc .pngcalc_label.checkbox .select2-selection--single .select2-selection--single {
+  padding: 0 0 0 4px !important;
+  height: auto !important;
+  line-height: 16px !important;
+}
 .pngcalc .select2-container--default .select2-selection--single .select2-selection__clear {
   margin-right: 0;
+  background-color: transparent !important;
+  background: transparent !important;
+  letter-spacing: 0 !important;
+  border: none !important;
+  font-size: 1em !important;
+  padding: 0 !important;
 }
 
 .pngcalc_button--wrap {
@@ -218,7 +234,7 @@
 }
 
 .pngcalc_button {
-  padding: 10px;
+  padding: 6px 10px;
   font-size: 14px;
   line-height: 16px;
   font-weight: 700;
