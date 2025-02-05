@@ -41,4 +41,17 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     });
+
+    const closerCalc = document.querySelector('#png-calculator__closer');
+    if(closerCalc) {
+        closerCalc.addEventListener('click', function (e){
+            e.preventDefault()
+            let popupCalc = document.querySelector('#png-calculator-popup');
+            let calculatorSection = document.querySelector('#png-calculator');
+
+            if (popupCalc && calculatorSection) {
+                popupCalc.classList.remove('active');
+            }
+        })
+    }
 });

@@ -5,9 +5,11 @@ $print_discounts = get_field( 'print_discounts', 'options' );
 
 
 <section id="png-calculator">
+    <button class="modal-closer" id="png-calculator__closer">
+        <span></span>
+        <span></span>
+    </button>
     <div class="container">
-
-
         <form id="png-calculator-form" class="pngcalc">
             <div class="pngcalc__step" data-step="calc">
                 <fieldset class="pngcalc__block">
@@ -29,7 +31,7 @@ $print_discounts = get_field( 'print_discounts', 'options' );
                         <span>
                             <?php echo __('Ціна з сайту', 'pngcalc') ?>
                         </span>
-                        <input type="number" name="product_price" <?php echo $price ? 'readonly' : '' ?> id="product_price" value="<?php echo $price ?? '' ?>">
+                        <input type="number" name="product_price" id="product_price" value="<?php echo $price ?? '' ?>">
                     </label>
                     <label for="product_final_price" class="pngcalc_label">
                         <span>
