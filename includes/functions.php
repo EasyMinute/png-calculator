@@ -55,13 +55,34 @@ function add_hidden_inputs_to_form() {
 	if (is_product()) { // Check if we're on a single product page
 		global $product;
 
-		// Get product details
+		if (!$product) {
+			return false;
+		}
+
 		$product_id = $product->get_id();
 		$product_sku = $product->get_sku();
 		$product_name = $product->get_name();
-		$product_price = $product->get_price();
 		$product_url = get_permalink($product_id); // Get the product URL
+		$product_price = '';
 
+		// Handle variable products
+		if ($product->is_type('variable')) {
+			$available_variations = $product->get_available_variations();
+			$prices = [];
+
+			foreach ($available_variations as $variation) {
+				$variation_id = $variation['variation_id'];
+				$variation_obj = wc_get_product($variation_id);
+
+				if ($variation_obj->is_in_stock()) {
+					$prices[] = $variation_obj->get_price();
+				}
+			}
+
+			$product_price = !empty($prices) ? min($prices) : ''; // Get the lowest in-stock variation price
+		} else {
+			$product_price = $product->get_price();
+		}
 
 		// Output hidden inputs
 		echo '<input type="hidden" name="product_id" value="' . esc_attr($product_id) . '">';
@@ -70,9 +91,9 @@ function add_hidden_inputs_to_form() {
 		echo '<input type="hidden" name="product_price" value="' . esc_attr($product_price) . '">';
 		echo '<input type="hidden" name="product_url" value="' . esc_url($product_url) . '">';
 
-
 		return $product_price;
-	} else {
-		return false;
 	}
+
+	return false;
 }
+
