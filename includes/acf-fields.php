@@ -1,4 +1,5 @@
 <?php
+
 add_action( 'acf/include_fields', function() {
 	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
 		return;
@@ -291,10 +292,10 @@ add_action( 'acf/include_fields', function() {
 							'a3' => 'A3 40 х 29 см',
 							'a2' => 'A2 58 х 40 см',
 							'5to5cm' => '5x5 cm',
-							'30to11cm' => '30 х 11 см',
+							'30to12cm' => '30 x 12см',
 						),
 						'default_value' => false,
-						'return_format' => '',
+						'return_format' => 'value',
 						'multiple' => 0,
 						'allow_null' => 0,
 						'allow_in_bindings' => 0,
@@ -463,7 +464,7 @@ add_action( 'acf/include_fields', function() {
 							'a3' => 'A3 40 х 29 см',
 							'a2' => 'A2 58 х 40 см',
 							'5to5cm' => '5x5 cm',
-							'30to11cm' => '30 х 11 см',
+							'30to12cm' => '30 x 12см',
 						),
 						'default_value' => false,
 						'return_format' => 'array',
@@ -634,7 +635,7 @@ add_action( 'acf/include_fields', function() {
 							'a3' => 'A3 40 х 29 см',
 							'a2' => 'A2 58 х 40 см',
 							'5to5cm' => '5x5 cm',
-							'30to11cm' => '30 х 11 см',
+							'30to12cm' => '30 x 12см',
 						),
 						'default_value' => false,
 						'return_format' => 'array',
@@ -806,7 +807,7 @@ add_action( 'acf/include_fields', function() {
 							'a3' => 'A3 40 х 29 см',
 							'a2' => 'A2 58 х 40 см',
 							'5to5cm' => '5x5 cm',
-							'30to11cm' => '30 х 11 см',
+							'30to12cm' => '30 x 12см',
 						),
 						'default_value' => false,
 						'return_format' => 'array',
@@ -1395,6 +1396,4 @@ add_action( 'acf/include_fields', function() {
 		'show_in_rest' => 0,
 	) );
 } );
-
-
 

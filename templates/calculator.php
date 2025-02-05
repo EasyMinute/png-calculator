@@ -59,10 +59,10 @@ $print_discounts = get_field( 'print_discounts', 'options' );
                                 <span><?php echo __('Тип друку', 'pngcalc') ?></span>
                                 <select name="printType[]" class="printType">
                                     <option value=""><?php echo __('Оберіть тип', 'pngcalc') ?></option>
-                                    <option value="sublimation"><?php echo __('Сублімаційний', 'pngcalc') ?></option>
-                                    <option value="silkScreen"><?php echo __('Шовкотрафаретний', 'pngcalc') ?></option>
                                     <option value="dtf"><?php echo __('DTF', 'pngcalc') ?></option>
                                     <option value="uvDtf"><?php echo __('UV DTF', 'pngcalc') ?></option>
+                                    <option value="silkScreen"><?php echo __('Шовкотрафаретний', 'pngcalc') ?></option>
+                                    <option value="sublimation"><?php echo __('Сублімаційний', 'pngcalc') ?></option>
                                 </select>
                             </label>
                             <label class="pngcalc_label select">
