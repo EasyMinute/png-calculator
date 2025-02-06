@@ -47,6 +47,7 @@
 }
 .pngcalc .pngcalc__step.user-step .pngcalc__step input, .pngcalc .pngcalc__step.user-step .pngcalc__step textarea {
   max-width: 200px;
+  height: auto !important;
 }
 .pngcalc .pngcalc__block {
   width: 100%;

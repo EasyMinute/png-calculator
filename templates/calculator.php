@@ -198,7 +198,6 @@ $print_discounts = get_field( 'print_discounts', 'options' );
                         <button class="pngcalc_button pngcalc_stepper" data-step="calc"><?php echo __('Попередній крок', 'pngcalc') ?></button>
                         <button type="submit" class="pngcalc_button" id="submitCalc"><?php echo __('Надіслати', 'pngcalc') ?></button>
                     </div>
-                    <?php echo do_shortcode('[wpcaptcha wpcaptcha-3]'); ?>
                 </fieldset>
             </div>
 
