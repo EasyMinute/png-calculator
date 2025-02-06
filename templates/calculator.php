@@ -153,12 +153,17 @@ $print_discounts = get_field( 'print_discounts', 'options' );
                 </fieldset>
                 <div class="pngcalc__footer">
                     <p class="pngcalc__footer__row">
+		                <?php echo __('Підсумок: ') ?>
+                    </p>
+                    <p class="pngcalc__footer__row">
                         <?php echo __('Загальна вартість одиниці: ') ?>
                         <span id="totalPrice">0</span>
+                        грн
                     </p>
                     <p class="pngcalc__footer__row">
                         <?php echo __('Загальна сума: ') ?>
                         <span id="totalSum">0</span>
+                        грн
                     </p>
                     <button class="pngcalc_button pngcalc_stepper" data-step="user" id="nextStep"><?php echo __('Надіслати розрахунок', 'pngcalc') ?></button>
                 </div>

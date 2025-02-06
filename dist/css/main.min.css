@@ -355,7 +355,7 @@
   padding-top: 24px;
 }
 .pngcalc .pngcalc__footer__row {
-  margin-bottom: 8px;
+  margin-bottom: 8px !important;
   font-size: 18px;
   line-height: 20px;
   font-weight: 600;

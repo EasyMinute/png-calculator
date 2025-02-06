@@ -81,30 +81,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (group) {
 
-            if(!isMobile()) {
-                $(group.querySelector('.printType')).select2({
-                    placeholder: 'Оберіть тип друку',
-                    allowClear: true,
-                    width: '100%',
-                    minimumResultsForSearch: Infinity,
-                });
+            $(group.querySelector('.printType')).select2({
+                placeholder: 'Оберіть тип друку',
+                allowClear: true,
+                width: '100%',
+                minimumResultsForSearch: Infinity,
+            });
 
-                $(group.querySelector('.printFormat')).select2({
-                    placeholder: 'Оберіть формат',
-                    allowClear: true,
-                    width: '100%',
-                    minimumResultsForSearch: Infinity,
-                });
+            $(group.querySelector('.printFormat')).select2({
+                placeholder: 'Оберіть формат',
+                allowClear: true,
+                width: '100%',
+                minimumResultsForSearch: Infinity,
+            });
 
 
-                // Initialize Select2 for the printDiscounts dropdown
-                const $discounts = $(group.querySelector('.printDiscounts')).select2({
-                    placeholder: 'Оберіть знижку',
-                    allowClear: true,
-                    width: '100%',
-                    minimumResultsForSearch: Infinity, // Disable search
-                });
-            }
+            // Initialize Select2 for the printDiscounts dropdown
+            const $discounts = $(group.querySelector('.printDiscounts')).select2({
+                placeholder: 'Оберіть знижку',
+                allowClear: true,
+                width: '100%',
+                minimumResultsForSearch: Infinity, // Disable search
+            });
+
             // Attach the event listener for changes in the printDiscounts dropdown
             $discounts.on('change', calculatePrintCosts);
         }
