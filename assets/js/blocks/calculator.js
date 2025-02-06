@@ -3,6 +3,11 @@ import 'select2/dist/css/select2.css'; // Import Select2 CSS
 import 'select2'; // Import Select2 JavaScript
 
 document.addEventListener('DOMContentLoaded', function () {
+
+    function isMobile() {
+        return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    }
+
     const productQuantityInput = document.getElementById('product_quantity');
     const productPriceInput = document.getElementById('product_price');
     const productFinalPriceInput = document.getElementById('product_final_price');
@@ -75,28 +80,31 @@ document.addEventListener('DOMContentLoaded', function () {
     function initializeSelect2(group) {
 
         if (group) {
-            $(group.querySelector('.printType')).select2({
-                placeholder: 'Оберіть тип друку',
-                allowClear: true,
-                width: '100%',
-                minimumResultsForSearch: Infinity,
-            });
 
-            $(group.querySelector('.printFormat')).select2({
-                placeholder: 'Оберіть формат',
-                allowClear: true,
-                width: '100%',
-                minimumResultsForSearch: Infinity,
-            });
+            if(!isMobile()) {
+                $(group.querySelector('.printType')).select2({
+                    placeholder: 'Оберіть тип друку',
+                    allowClear: true,
+                    width: '100%',
+                    minimumResultsForSearch: Infinity,
+                });
+
+                $(group.querySelector('.printFormat')).select2({
+                    placeholder: 'Оберіть формат',
+                    allowClear: true,
+                    width: '100%',
+                    minimumResultsForSearch: Infinity,
+                });
 
 
-            // Initialize Select2 for the printDiscounts dropdown
-            const $discounts = $(group.querySelector('.printDiscounts')).select2({
-                placeholder: 'Оберіть знижку',
-                allowClear: true,
-                width: '100%',
-                minimumResultsForSearch: Infinity, // Disable search
-            });
+                // Initialize Select2 for the printDiscounts dropdown
+                const $discounts = $(group.querySelector('.printDiscounts')).select2({
+                    placeholder: 'Оберіть знижку',
+                    allowClear: true,
+                    width: '100%',
+                    minimumResultsForSearch: Infinity, // Disable search
+                });
+            }
             // Attach the event listener for changes in the printDiscounts dropdown
             $discounts.on('change', calculatePrintCosts);
         }
