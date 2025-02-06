@@ -48,8 +48,6 @@ document.addEventListener('DOMContentLoaded', function () {
         productFinalPriceInput.value = productFinalPrice.toFixed(2);
         productSumInput.value = productSum.toFixed(2);
 
-        console.log('productSumInput', productSum)
-
         updateTotalSpans(); // Update spans after recalculating
     }
 
@@ -159,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         const baseFinalPrice = totalPrice.toFixed(2); // Base price per item
-        const baseSum = (baseFinalPrice * productQuantity).toFixed(2); // Base sum before discounts or surcharges
+        const baseSum = parseFloat((baseFinalPrice * productQuantity).toFixed(2)); // Base sum before discounts or surcharges
 
         let finalSum = baseSum
 
@@ -190,6 +188,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const printClientProduct = document.getElementById('printClientProduct').checked
                 ? parseFloat(document.getElementById('printClientProduct').value) || 1
                 : 1;
+
             finalSum += baseSum * (printClientProduct - 1); // Adjust for client product multiplier
         }
 
@@ -214,6 +213,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const printDiscount = parseFloat(document.querySelector('.printDiscounts').value) || 1; // Default to no discount
             finalSum *= printDiscount;
         }
+
 
         // Update the final price and sum
         printFinalPriceInput.value = (finalSum / productQuantity).toFixed(2); // Final price per item

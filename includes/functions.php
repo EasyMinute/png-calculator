@@ -97,3 +97,17 @@ function add_hidden_inputs_to_form() {
 	return false;
 }
 
+function add_recaptcha_to_head() {
+	?>
+	<script type="text/javascript">
+        var onloadCallback = function() {
+            grecaptcha.render('html_element', {
+                'sitekey' : '6Lc-AM8qAAAAAHK4wRP7JIXw0Fp75bfTKPN45hLn'
+            });
+        };
+	</script>
+	<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+	<?php
+}
+add_action('wp_head', 'add_recaptcha_to_head');
+
