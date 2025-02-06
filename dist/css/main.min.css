@@ -58,6 +58,7 @@
   }
 }
 .pngcalc .pngcalc__step.user-step textarea {
+  resize: none !important;
   max-width: 200px;
   height: 75px;
 }
@@ -134,6 +135,7 @@
 }
 .pngcalc .pngcalc_label input,
 .pngcalc .pngcalc_label textarea {
+  resize: none !important;
   display: block;
   width: 100%;
   max-width: 150px;
@@ -459,7 +461,7 @@
 }
 #png-calculator-popup #png-calculator {
   width: 100%;
-  max-width: 1280px;
+  max-width: 1000px;
   position: relative;
   overflow: auto;
 }
