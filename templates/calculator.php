@@ -14,7 +14,7 @@ $print_discounts = get_field( 'print_discounts', 'options' );
             <div class="pngcalc__step" data-step="calc">
                 <fieldset class="pngcalc__block">
                     <h3 class="pngcalc__block__title">
-                        <?php echo __('Визначення вартості виробів', 'pngcalc') ?>
+                        <?php echo __('Продукція', 'pngcalc') ?>
                     </h3>
 
                     <div class="product_hidden_fields">
@@ -23,7 +23,7 @@ $print_discounts = get_field( 'print_discounts', 'options' );
 
                     <label for="product_quantity" class="pngcalc_label">
                         <span>
-                            <?php echo __('К-сть товарів/нанесень', 'pngcalc') ?>
+                            <?php echo __('Тираж', 'pngcalc') ?>
                         </span>
                         <input type="number" name="product_quantity" id="product_quantity">
                     </label>
@@ -102,7 +102,7 @@ $print_discounts = get_field( 'print_discounts', 'options' );
                 </fieldset>
                 <fieldset class="pngcalc__block">
                     <h3 class="pngcalc__block__title">
-                        <?php echo __('Визначення вартості друку', 'pngcalc') ?>
+                        <?php echo __('Друк (нанесення)', 'pngcalc') ?>
                     </h3>
 
                     <!-- Container for all print configurations -->
@@ -129,7 +129,7 @@ $print_discounts = get_field( 'print_discounts', 'options' );
                     </div>
 
                     <div class="pngcalc_button--wrap">
-                        <p>
+                        <p style="display: none;">
                             <?php echo __('Опції друку', 'pngcalc') ?>
                         </p>
                         <!-- Add and Remove buttons -->
@@ -163,7 +163,7 @@ $print_discounts = get_field( 'print_discounts', 'options' );
                     <button class="pngcalc_button pngcalc_stepper" data-step="user" id="nextStep"><?php echo __('Надіслати розрахунок', 'pngcalc') ?></button>
                 </div>
             </div>
-            <div class="pngcalc__step hidden" data-step="user">
+            <div class="pngcalc__step user-step hidden" data-step="user">
                 <fieldset class="pngcalc__block">
                     <h3 class="pngcalc__block__title">
 			            <?php echo __('Контактні дані', 'pngcalc') ?>
@@ -186,6 +186,13 @@ $print_discounts = get_field( 'print_discounts', 'options' );
                             <?php echo __('Телефон', 'pngcalc') ?>
                         </span>
                         <input type="tel" name="user_phone" id="user_phone">
+                    </label>
+
+                    <label for="user_notes" class="pngcalc_label">
+                        <span>
+                            <?php echo __('Повідомлення', 'pngcalc') ?>
+                        </span>
+                        <textarea type="tel" name="user_notes" id="user_notes"></textarea>
                     </label>
                     <div class="pngcalc_button--wrap">
                         <button class="pngcalc_button pngcalc_stepper" data-step="calc"><?php echo __('Попередній крок', 'pngcalc') ?></button>

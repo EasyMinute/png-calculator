@@ -105,6 +105,10 @@ function send_calculations_to_crm() {
 		$calc_note .= "\n Посилання на продукт: " . $_POST["product_url"] ;
 	}
 
+	if (isset($_POST['user_notes'])) {
+		$calc_note .= "\n Повідомлення користувача: " . $_POST["user_notes"] ;
+	}
+
 	$formatted_calc_note = $calc_note;
 
 	var_dump($_POST);

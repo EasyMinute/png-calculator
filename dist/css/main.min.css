@@ -41,6 +41,13 @@
   max-height: 0;
   padding: 0 24px;
 }
+.pngcalc .pngcalc__step.user-step {
+  align-items: center;
+  justify-content: center;
+}
+.pngcalc .pngcalc__step.user-step .pngcalc__step input, .pngcalc .pngcalc__step.user-step .pngcalc__step textarea {
+  max-width: 200px;
+}
 .pngcalc .pngcalc__block {
   width: 100%;
   max-width: calc(50% - 12px);
@@ -51,7 +58,7 @@
   .pngcalc .pngcalc__block {
     max-width: 100%;
     padding: 24px 0 18px 0;
-    border: 2px solid color(srgb 0.6627 0.6628 0.6628);
+    border-bottom: 1px solid color(srgb 0.6627 0.6628 0.6628);
     border-radius: 0;
   }
 }
@@ -102,7 +109,13 @@
   min-width: -moz-max-content;
   min-width: max-content;
 }
-.pngcalc .pngcalc_label input {
+@media screen and (max-width: 980px) {
+  .pngcalc .pngcalc_label > span {
+    margin-bottom: 0;
+  }
+}
+.pngcalc .pngcalc_label input,
+.pngcalc .pngcalc_label textarea {
   display: block;
   width: 100%;
   max-width: 150px;
@@ -119,11 +132,13 @@
   font-family: inherit;
 }
 @media screen and (max-width: 980px) {
-  .pngcalc .pngcalc_label input {
+  .pngcalc .pngcalc_label input,
+  .pngcalc .pngcalc_label textarea {
     max-width: 90px;
+    margin-bottom: 0;
   }
 }
-.pngcalc .pngcalc_label input:-moz-read-only {
+.pngcalc .pngcalc_label input:-moz-read-only, .pngcalc .pngcalc_label textarea:-moz-read-only {
   display: inline;
   width: auto;
   border: none;
@@ -136,7 +151,8 @@
        appearance: none;
   text-align: right;
 }
-.pngcalc .pngcalc_label input:read-only {
+.pngcalc .pngcalc_label input:read-only,
+.pngcalc .pngcalc_label textarea:read-only {
   display: inline;
   width: auto;
   border: none;
@@ -150,16 +166,19 @@
   text-align: right;
 }
 @media screen and (max-width: 980px) {
-  .pngcalc .pngcalc_label input:-moz-read-only {
+  .pngcalc .pngcalc_label input:-moz-read-only, .pngcalc .pngcalc_label textarea:-moz-read-only {
     width: 180px;
     display: inline-block;
   }
-  .pngcalc .pngcalc_label input:read-only {
+  .pngcalc .pngcalc_label input:read-only,
+  .pngcalc .pngcalc_label textarea:read-only {
     width: 180px;
     display: inline-block;
   }
 }
-.pngcalc .pngcalc_label input:read-only::-webkit-outer-spin-button, .pngcalc .pngcalc_label input:read-only::-webkit-inner-spin-button {
+.pngcalc .pngcalc_label input:read-only::-webkit-outer-spin-button, .pngcalc .pngcalc_label input:read-only::-webkit-inner-spin-button,
+.pngcalc .pngcalc_label textarea:read-only::-webkit-outer-spin-button,
+.pngcalc .pngcalc_label textarea:read-only::-webkit-inner-spin-button {
   -webkit-appearance: none;
   appearance: none;
 }
