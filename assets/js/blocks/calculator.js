@@ -335,3 +335,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     initializePrintGroups();
 });
+
+jQuery(document).ready(function($) {
+    $('select').on('select2:open', function() {
+        $(this).css('pointer-events', 'none'); // Disable native select
+    }).on('select2:close', function() {
+        $(this).css('pointer-events', 'auto'); // Enable it again
+    });
+});

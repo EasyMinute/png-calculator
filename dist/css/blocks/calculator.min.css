@@ -18,6 +18,9 @@
   text-align: center;
 }
 
+.pngcalc select:focus {
+  pointer-events: none !important; /* Prevents Safari from opening native dropdown */
+}
 .pngcalc .pngcalc_title {
   width: 100%;
   margin-block-start: 0;
@@ -45,9 +48,23 @@
   align-items: center;
   justify-content: center;
 }
-.pngcalc .pngcalc__step.user-step .pngcalc__step input, .pngcalc .pngcalc__step.user-step .pngcalc__step textarea {
+.pngcalc .pngcalc__step.user-step input {
   max-width: 200px;
   height: auto !important;
+}
+@media screen and (max-width: 920px) {
+  .pngcalc .pngcalc__step.user-step input {
+    max-width: 200px;
+  }
+}
+.pngcalc .pngcalc__step.user-step textarea {
+  max-width: 200px;
+  height: 75px;
+}
+@media screen and (max-width: 920px) {
+  .pngcalc .pngcalc__step.user-step textarea {
+    max-width: 200px;
+  }
 }
 .pngcalc .pngcalc__block {
   width: 100%;
