@@ -248,9 +248,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //Sync with clientProductsCheckbox and price_input
     let previousProductPrice = productPriceInput.value; // Store the original price
-    if (printClientProduct && productPriceInput) {
+    const printClientProductCheckbox = document.getElementById('printClientProduct')
+    if (printClientProductCheckbox && productPriceInput) {
         // When checkbox is checked, store current price and set product_price to 0
-        printClientProduct.addEventListener('change', function () {
+        printClientProductCheckbox.addEventListener('change', function () {
             if (this.checked) {
                 previousProductPrice = productPriceInput.value; // Store the price before setting to 0
                 productPriceInput.value = 0;
