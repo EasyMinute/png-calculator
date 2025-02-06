@@ -46,6 +46,8 @@ $print_discounts = get_field( 'print_discounts', 'options' );
                         <input type="number" name="product_sum" id="product_sum" readonly>
                     </label>
 
+
+	                <?php $additional = get_field('additional', 'options'); ?>
 	                <?php if(current_user_can('administrator')): ?>
 
                         <label class="pngcalc_label select discountGroup">
@@ -59,8 +61,6 @@ $print_discounts = get_field( 'print_discounts', 'options' );
 				                <?php endforeach; ?>
                             </select>
                         </label>
-
-		                <?php $additional = get_field('additional', 'options'); ?>
 
 		                <?php if(!empty($additional['urgency'])): ?>
                             <label for="printUrgency" class="pngcalc_label checkbox">
@@ -190,14 +190,15 @@ $print_discounts = get_field( 'print_discounts', 'options' );
 
                     <label for="user_notes" class="pngcalc_label">
                         <span>
-                            <?php echo __('Повідомлення', 'pngcalc') ?>
+                            <?php echo __('Коментар', 'pngcalc') ?>
                         </span>
-                        <textarea type="tel" name="user_notes" id="user_notes"></textarea>
+                        <textarea name="user_notes" id="user_notes"></textarea>
                     </label>
                     <div class="pngcalc_button--wrap">
                         <button class="pngcalc_button pngcalc_stepper" data-step="calc"><?php echo __('Попередній крок', 'pngcalc') ?></button>
                         <button type="submit" class="pngcalc_button" id="submitCalc"><?php echo __('Надіслати', 'pngcalc') ?></button>
                     </div>
+                    <?php echo do_shortcode('[wpcaptcha wpcaptcha-3]'); ?>
                 </fieldset>
             </div>
 

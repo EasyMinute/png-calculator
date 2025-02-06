@@ -256,6 +256,13 @@
   font-size: 1em !important;
   padding: 0 !important;
 }
+.pngcalc .pngcalc_label .select2-selection--single .select2-selection__clear span {
+  color: #000 !important;
+}
+
+.select-search__field {
+  -webkit-appearance: textfield !important;
+}
 
 .pngcalc_button--wrap {
   margin-bottom: 20px;
