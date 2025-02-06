@@ -5,15 +5,20 @@
 #png-calculator {
   width: 100%;
   max-width: unset;
-}
 
-.container {
-  width: 100%;
-  max-width: 1280px;
-  margin: auto;
+  .container {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+  }
+
+  h1 {
+    text-align: center;
+  }
 }
 
 .pngcalc {
+
 
 
   .pngcalc_title {
@@ -47,10 +52,12 @@
     max-width: calc(50% - 12px);
     padding: 18px 0;
     border: none;
-    border-radius: 12px;
+
     @media screen and (max-width: 920px){
       max-width: 100%;
-      padding: 0;
+      padding: 24px 0 18px 0;
+      border: 2px solid color(srgb 0.6627 0.6628 0.6628);
+      border-radius: 0;
     }
 
 
@@ -76,6 +83,10 @@
           margin-bottom: 12px;
         }
 
+        & > span.hidden {
+          display: none;
+        }
+
         select {
           width: 100%;
           font-size: 14px;
@@ -94,7 +105,7 @@
 
     & > span {
       display: inline-block;
-      font-weight: 600;
+      font-weight: 100;
       font-size: 14px;
       line-height: 16px;
       margin-bottom: 8px;
@@ -210,6 +221,11 @@
 
     }
 
+    &.discountGroup {
+      .select2-container {
+        max-width: 150px;
+      }
+    }
     .select2-selection--single {
       border-radius: 50px !important;
       height: auto !important;
@@ -239,7 +255,7 @@
 
   p{
     display: block;
-    font-weight: 600;
+    font-weight: 100;
     font-size: 14px;
     line-height: 16px;
     margin-bottom: 8px !important;
@@ -252,7 +268,7 @@
   padding: 6px 10px;
   font-size: 14px;
   line-height: 16px;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   color: #76B00A;
   background-color: rgba(0, 0, 0, 0);
@@ -312,6 +328,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    padding-top: 24px;
 
     &__row {
       margin-bottom: 8px;

@@ -88,7 +88,6 @@ $print_discounts = get_field( 'print_discounts', 'options' );
                                 </span>
                             </label>
 		                <?php endif; ?>
-
 	                <?php endif; ?>
 
 	                <?php if(!empty($additional['clients_items'])): ?>
@@ -111,7 +110,7 @@ $print_discounts = get_field( 'print_discounts', 'options' );
                         <!-- Hidden template for cloning -->
                         <div class="pngcalc__block__group print-group-template" style="display: none;">
                             <label class="pngcalc_label select">
-                                <span><?php echo __('Тип друку', 'pngcalc') ?></span>
+                                <span class="hidden"><?php echo __('Тип друку', 'pngcalc') ?></span>
                                 <select name="printType[]" class="printType">
                                     <option value=""><?php echo __('Оберіть тип', 'pngcalc') ?></option>
                                     <option value="dtf"><?php echo __('DTF', 'pngcalc') ?></option>
@@ -121,7 +120,7 @@ $print_discounts = get_field( 'print_discounts', 'options' );
                                 </select>
                             </label>
                             <label class="pngcalc_label select">
-                                <span><?php echo __('Формат друку', 'pngcalc') ?></span>
+                                <span class="hidden"><?php echo __('Формат друку', 'pngcalc') ?></span>
                                 <select name="printFormat[]" class="printFormat">
                                     <option value=""><?php echo __('Оберіть формат', 'pngcalc') ?></option>
                                 </select>
