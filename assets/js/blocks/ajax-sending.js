@@ -16,11 +16,12 @@ document.addEventListener('DOMContentLoaded', function () {
             const printFormats = [];
             const printTypes = [];
 
-            document.querySelectorAll('.printFormat').forEach(select => {
+            document.querySelectorAll('.printFormat.select2-hidden-accessible').forEach(select => {
                 printFormats.push(select.value);
+                console.log('select', select)
             });
 
-            document.querySelectorAll('.printType').forEach(select => {
+            document.querySelectorAll('.printType.select2-hidden-accessible').forEach(select => {
                 printTypes.push(select.value);
             });
 
@@ -44,12 +45,15 @@ document.addEventListener('DOMContentLoaded', function () {
                     // alert('Форму надіслано!');
                     console.log('CRM data sent successfully:', xhr.responseText);
                     // **Clear all form fields**
-                    form.reset();
+                    // form.reset();
+                    document.querySelectorAll('.pngcalc_label input').forEach(input => {
+                        input.value = '';
+                    });
 
                     // **Clear dynamically created selects**
-                    document.querySelectorAll('.printFormat, .printType').forEach(select => {
-                        select.value = '';
-                    });
+                    // document.querySelectorAll('.printFormat, .printType').forEach(select => {
+                    //     select.value = '';
+                    // });
                     // **Clear displayed total price & total sum (if necessary)**
                     if (document.getElementById('totalPrice')) {
                         document.getElementById('totalPrice').textContent = '0';
