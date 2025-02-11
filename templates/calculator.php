@@ -48,7 +48,9 @@ $print_discounts = get_field( 'print_discounts', 'options' );
 
 
 	                <?php $additional = get_field('additional', 'options'); ?>
-	                <?php if(current_user_can('administrator') || post_password_required()): ?>
+                    <?php
+                    global $post;
+                    if(current_user_can('administrator') || $post->post_password): ?>
 
                         <label class="pngcalc_label select discountGroup">
                             <span><?php echo __('Група знижок', 'pngcalc') ?></span>
