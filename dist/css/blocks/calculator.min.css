@@ -40,6 +40,11 @@
   max-height: 3000px;
   transition: all 0.3s;
 }
+@media screen and (max-width: 920px) {
+  .pngcalc .pngcalc__step {
+    padding: 24px 12px;
+  }
+}
 .pngcalc .pngcalc__step.hidden {
   max-height: 0;
   padding: 0 24px;

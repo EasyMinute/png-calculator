@@ -42,6 +42,9 @@
     overflow: hidden;
     max-height: 3000px;
     transition: all .3s;
+    @media screen and (max-width: 920px) {
+      padding: 24px 12px;
+    }
 
     &.hidden {
       max-height: 0;
