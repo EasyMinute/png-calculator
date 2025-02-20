@@ -295,7 +295,7 @@ add_action( 'acf/include_fields', function() {
 							'30to12cm' => '30 x 12см',
 						),
 						'default_value' => false,
-						'return_format' => 'value',
+						'return_format' => 'array',
 						'multiple' => 0,
 						'allow_null' => 0,
 						'allow_in_bindings' => 0,

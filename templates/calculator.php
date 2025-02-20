@@ -1,6 +1,9 @@
 <?php
 $print_discounts = get_field( 'print_discounts', 'options' );
-
+$sublimation_koefs   = get_field('sublimation_koefs', 'options');
+$silk_screen_koefs  = get_field('silk_screen_koefs', 'options');
+$uv_dtf_koefs  = get_field('uv_dtf_koefs', 'options');
+$dtf_koefs           = get_field('dtf_koefs', 'options');
 ?>
 
 
@@ -39,7 +42,7 @@ $print_discounts = get_field( 'print_discounts', 'options' );
                         </span>
                         <input type="number" name="product_final_price" id="product_final_price" readonly>
                     </label>
-                    <label for="product_sum" class="pngcalc_label">
+                    <label for="product_sum" class="pngcalc_label"  style="display: none">
                         <span>
                             <?php echo __('Ціна за тираж', 'pngcalc') ?>
                         </span>
@@ -115,10 +118,18 @@ $print_discounts = get_field( 'print_discounts', 'options' );
                                 <span class="hidden"><?php echo __('Тип друку', 'pngcalc') ?></span>
                                 <select name="printType[]" class="printType">
                                     <option value=""><?php echo __('Оберіть тип', 'pngcalc') ?></option>
-                                    <option value="dtf"><?php echo __('DTF', 'pngcalc') ?></option>
-                                    <option value="uvDtf"><?php echo __('UV DTF', 'pngcalc') ?></option>
-                                    <option value="silkScreen"><?php echo __('Шовкотрафаретний', 'pngcalc') ?></option>
-                                    <option value="sublimation"><?php echo __('Сублімаційний', 'pngcalc') ?></option>
+                                    <?php if(!empty($dtf_koefs)): ?>
+                                        <option value="dtf"><?php echo __('DTF', 'pngcalc') ?></option>
+                                    <?php endif; ?>
+	                                <?php if(!empty($uv_dtf_koefs)): ?>
+                                        <option value="uvDtf"><?php echo __('UV DTF', 'pngcalc') ?></option>
+                                    <?php endif; ?>
+	                                <?php if(!empty($silk_screen_koefs)): ?>
+                                        <option value="silkScreen"><?php echo __('Шовкотрафаретний', 'pngcalc') ?></option>
+                                    <?php endif; ?>
+	                                <?php if(!empty($sublimation_koefs)): ?>
+                                        <option value="sublimation"><?php echo __('Сублімаційний', 'pngcalc') ?></option>
+                                    <?php endif; ?>
                                 </select>
                             </label>
                             <label class="pngcalc_label select">
@@ -145,7 +156,7 @@ $print_discounts = get_field( 'print_discounts', 'options' );
                         </span>
                         <input type="number" name="print_final_price" id="print_final_price" readonly>
                     </label>
-                    <label for="print_sum" class="pngcalc_label">
+                    <label for="print_sum" class="pngcalc_label" style="display: none">
                         <span>
                             <?php echo __('Сума за друк', 'pngcalc') ?>
                         </span>
@@ -153,22 +164,33 @@ $print_discounts = get_field( 'print_discounts', 'options' );
                     </label>
 
                 </fieldset>
+
+
                 <div class="pngcalc__footer">
                     <p class="pngcalc__footer__row">
-		                <?php echo __('Підсумок: ') ?>
-                    </p>
-                    <p class="pngcalc__footer__row">
-                        <?php echo __('Загальна вартість одиниці: ') ?>
+                        <?php echo __('Ціна одиниці: ') ?>
                         <span id="totalPrice">0</span>
-                        грн
+                        <span>грн</span>
                     </p>
                     <p class="pngcalc__footer__row">
-                        <?php echo __('Загальна сума: ') ?>
+		                <?php echo __('Вартість продукції: ') ?>
+                        <span id="totalProd">0</span>
+                        <span>грн</span>
+                    </p>
+                    <p class="pngcalc__footer__row">
+		                <?php echo __('Вартість за друк: ') ?>
+                        <span id="totalPrint">0</span>
+                        <span>грн</span>
+                    </p>
+                    <p class="pngcalc__footer__row">
+                        <?php echo __('Загальна вартість: ') ?>
                         <span id="totalSum">0</span>
-                        грн
+                        <span>грн</span>
                     </p>
                     <button class="pngcalc_button pngcalc_stepper" data-step="user" id="nextStep"><?php echo __('Надіслати розрахунок', 'pngcalc') ?></button>
                 </div>
+
+
             </div>
             <div class="pngcalc__step user-step hidden" data-step="user">
                 <fieldset class="pngcalc__block">

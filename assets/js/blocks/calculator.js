@@ -114,6 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function populatePrintFormats(printType, formatSelect) {
         const koefs = koefsMap[printType] || [];
         const $formatSelect = $(formatSelect);
+        console.log('koefs', koefs)
 
         $formatSelect.empty(); // Clear existing options
 
@@ -295,6 +296,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Update spans
         document.getElementById('totalPrice').textContent = totalPrice.toFixed(2);
+        document.getElementById('totalProd').textContent = productFinalPrice.toFixed(2);
+        document.getElementById('totalPrint').textContent = printFinalPrice.toFixed(2);
         document.getElementById('totalSum').textContent = totalSum.toFixed(2);
     }
 
