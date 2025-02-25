@@ -56,6 +56,7 @@
 .pngcalc .pngcalc__step.user-step input {
   max-width: 200px;
   height: auto !important;
+  background-color: #fff;
 }
 @media screen and (max-width: 920px) {
   .pngcalc .pngcalc__step.user-step input {
@@ -67,6 +68,7 @@
   max-width: 200px;
   height: 75px;
   border-radius: 12px;
+  background-color: #fff;
 }
 @media screen and (max-width: 920px) {
   .pngcalc .pngcalc__step.user-step textarea {
@@ -153,7 +155,6 @@
   color: #000;
   font-size: 14px;
   line-height: 16px;
-  background: none;
   box-sizing: border-box;
   font-family: inherit;
 }
@@ -175,7 +176,8 @@
   -webkit-appearance: none;
   -moz-appearance: none;
        appearance: none;
-  text-align: right;
+  text-align: left;
+  background: none;
 }
 .pngcalc .pngcalc_label input:read-only,
 .pngcalc .pngcalc_label textarea:read-only {
@@ -189,7 +191,8 @@
   -webkit-appearance: none;
   -moz-appearance: none;
        appearance: none;
-  text-align: right;
+  text-align: left;
+  background: none;
 }
 @media screen and (max-width: 980px) {
   .pngcalc .pngcalc_label input:-moz-read-only, .pngcalc .pngcalc_label textarea:-moz-read-only {
@@ -335,6 +338,11 @@
   cursor: pointer;
   text-align: center;
 }
+.pngcalc_button.grey {
+  background-color: #bbb;
+  color: #fff;
+  border-color: #bbb;
+}
 @media screen and (max-width: 980px) {
   .pngcalc_button {
     width: 100%;
@@ -358,7 +366,6 @@
   color: #000;
   font-size: 14px;
   line-height: 16px;
-  background: none;
   box-sizing: border-box;
   font-family: inherit;
   display: flex;
@@ -389,6 +396,11 @@
   line-height: 20px;
   font-weight: 400;
   text-align: center;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  width: 100%;
 }
 @media screen and (max-width: 980px) {
   .pngcalc .pngcalc__footer__row {
@@ -399,6 +411,14 @@
 }
 .pngcalc .pngcalc__footer__row span {
   font-weight: 600;
+}
+.pngcalc .pngcalc__footer__row span:first-child {
+  display: block;
+  margin: 0 auto 0 0;
+  font-weight: 400;
+}
+.pngcalc .pngcalc__footer__row span.green {
+  color: #76B00A;
 }
 .pngcalc .pngcalc__footer .pngcalc_button {
   margin-top: 12px;

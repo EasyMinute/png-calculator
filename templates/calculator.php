@@ -147,7 +147,7 @@ $dtf_koefs           = get_field('dtf_koefs', 'options');
                         </p>
                         <!-- Add and Remove buttons -->
                         <button class="pngcalc_button" id="addPrint"><?php echo __('Додати друк', 'pngcalc') ?></button>
-                        <button class="pngcalc_button" id="removePrint"><?php echo __('Видалити друк', 'pngcalc') ?></button>
+                        <button class="pngcalc_button grey" id="removePrint"><?php echo __('Видалити друк', 'pngcalc') ?></button>
                     </div>
 
                     <label for="print_final_price" class="pngcalc_label">
@@ -168,24 +168,24 @@ $dtf_koefs           = get_field('dtf_koefs', 'options');
 
                 <div class="pngcalc__footer">
                     <p class="pngcalc__footer__row">
-                        <?php echo __('Ціна одиниці: ') ?>
-                        <span id="totalPrice">0</span>
-                        <span>грн</span>
-                    </p>
-                    <p class="pngcalc__footer__row">
-		                <?php echo __('Вартість продукції: ') ?>
+                        <span><?php echo __('Вартість продукції: ') ?></span>
                         <span id="totalProd">0</span>
                         <span>грн</span>
                     </p>
                     <p class="pngcalc__footer__row">
-		                <?php echo __('Вартість за друк: ') ?>
+                        <span><?php echo __('Вартість за друк: ') ?></span>
                         <span id="totalPrint">0</span>
                         <span>грн</span>
                     </p>
                     <p class="pngcalc__footer__row">
-                        <?php echo __('Загальна вартість: ') ?>
-                        <span id="totalSum">0</span>
-                        <span>грн</span>
+                        <span><?php echo __('Вартість одиниці: ') ?></span>
+                        <span class="green" id="totalPrice">0</span>
+                        <span class="green">грн</span>
+                    </p>
+                    <p class="pngcalc__footer__row">
+                        <span><?php echo __('Загальна вартість: ') ?></span>
+                        <span class="green" id="totalSum">0</span>
+                        <span class="green">грн</span>
                     </p>
                     <button class="pngcalc_button pngcalc_stepper" data-step="user" id="nextStep"><?php echo __('Надіслати розрахунок', 'pngcalc') ?></button>
                 </div>
