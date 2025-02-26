@@ -23,7 +23,8 @@
 }
 .pngcalc .pngcalc_title {
   width: 100%;
-  margin-block-start: 0;
+  -webkit-margin-before: 0;
+          margin-block-start: 0;
   margin: 0 0 24px;
   font-size: 20px;
   line-height: 24px;
@@ -44,6 +45,10 @@
   .pngcalc .pngcalc__step {
     padding: 24px 12px;
   }
+}
+.pngcalc .pngcalc__step .user-step .pngcalc__block {
+  padding-bottom: 0;
+  border: none;
 }
 .pngcalc .pngcalc__step.hidden {
   max-height: 0;
@@ -92,7 +97,8 @@
 .pngcalc .pngcalc__block__title {
   font-size: 16px;
   line-height: 18px;
-  margin-block-start: 0;
+  -webkit-margin-before: 0;
+          margin-block-start: 0;
   margin: 0 0 20px;
   font-weight: 600;
 }
@@ -139,6 +145,7 @@
 @media screen and (max-width: 980px) {
   .pngcalc .pngcalc_label > span {
     margin-bottom: 0;
+    margin-left: 0;
   }
 }
 .pngcalc .pngcalc_label input,
@@ -164,6 +171,10 @@
     max-width: 90px;
     margin-bottom: 0;
   }
+}
+.pngcalc .pngcalc_label input.invalid,
+.pngcalc .pngcalc_label textarea.invalid {
+  border-color: red;
 }
 .pngcalc .pngcalc_label input:-moz-read-only, .pngcalc .pngcalc_label textarea:-moz-read-only {
   display: inline;
@@ -337,6 +348,13 @@
   transition: all 0.3s;
   cursor: pointer;
   text-align: center;
+}
+.pngcalc_button.png-calculator-popup-trigger {
+  display: inline-block;
+  border: 1px solid;
+  padding: 14px;
+  text-transform: none;
+  margin-right: 6px;
 }
 .pngcalc_button.grey {
   background-color: #bbb;
@@ -523,6 +541,10 @@
   #png-calculator-popup #png-calculator {
     max-width: calc(100% - 32px);
   }
+}
+
+.png-calculator-popup-trigger + .ywctm-inquiry-form-wrapper {
+  display: inline-block !important;
 }
 /*!*************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/select2/dist/css/select2.css ***!

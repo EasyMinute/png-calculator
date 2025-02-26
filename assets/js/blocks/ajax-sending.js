@@ -7,6 +7,11 @@ document.addEventListener('DOMContentLoaded', function () {
             const formData = new FormData(form);
             const totalPrice = document.getElementById('totalPrice')?.textContent.trim() || '0';
             const totalSum = document.getElementById('totalSum')?.textContent.trim() || '0';
+            const formInputs = form.querySelectorAll('input')
+            if ([...formInputs].some(input => input.classList.contains('invalid'))) {
+                console.log("Form has invalid fields. Stopping AJAX.");
+                return; // Stop the function
+            }
 
             // Append them to FormData
             formData.append('totalPrice', totalPrice);

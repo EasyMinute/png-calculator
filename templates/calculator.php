@@ -202,19 +202,19 @@ $dtf_koefs           = get_field('dtf_koefs', 'options');
                         <span>
                             <?php echo __('ПІБ', 'pngcalc') ?>
                         </span>
-                        <input type="text" name="user_name" id="user_name">
+                        <input type="text" name="user_name" class="required" id="user_name">
                     </label>
                     <label for="user_email" class="pngcalc_label">
                         <span>
                             <?php echo __('Email', 'pngcalc') ?>
                         </span>
-                        <input type="email" name="user_email" id="user_email">
+                        <input type="email" name="user_email" class="required-email" id="user_email">
                     </label>
                     <label for="user_phone" class="pngcalc_label">
                         <span>
                             <?php echo __('Телефон', 'pngcalc') ?>
                         </span>
-                        <input type="tel" name="user_phone" id="user_phone">
+                        <input type="tel" name="user_phone" class="required-phone" id="user_phone">
                     </label>
 
                     <label for="user_notes" class="pngcalc_label">
@@ -225,7 +225,7 @@ $dtf_koefs           = get_field('dtf_koefs', 'options');
                     </label>
 
                     <div class="pngcalc_button--wrap">
-                        <button class="pngcalc_button pngcalc_stepper" data-step="calc"><?php echo __('Попередній крок', 'pngcalc') ?></button>
+                        <button class="pngcalc_button pngcalc_stepper" data-step="calc"><?php echo __('Назад', 'pngcalc') ?></button>
                         <button type="submit" class="pngcalc_button" id="submitCalc"><?php echo __('Надіслати', 'pngcalc') ?></button>
                     </div>
                 </fieldset>
