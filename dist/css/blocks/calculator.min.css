@@ -138,7 +138,6 @@
   font-size: 14px;
   line-height: 16px;
   margin-bottom: 8px;
-  margin-left: 8px;
   min-width: -moz-max-content;
   min-width: max-content;
 }
@@ -147,6 +146,13 @@
     margin-bottom: 0;
     margin-left: 0;
   }
+}
+.pngcalc .pngcalc_label .not-val-tip {
+  display: none;
+  color: red;
+  line-height: 1.2;
+  font-size: 10px;
+  margin-top: 4px;
 }
 .pngcalc .pngcalc_label input,
 .pngcalc .pngcalc_label textarea {
@@ -175,6 +181,12 @@
 .pngcalc .pngcalc_label input.invalid,
 .pngcalc .pngcalc_label textarea.invalid {
   border-color: red;
+}
+.pngcalc .pngcalc_label input.invalid + .not-val-tip,
+.pngcalc .pngcalc_label textarea.invalid + .not-val-tip {
+  display: block;
+  margin-top: -8px;
+  text-align: right;
 }
 .pngcalc .pngcalc_label input:-moz-read-only, .pngcalc .pngcalc_label textarea:-moz-read-only {
   display: inline;
@@ -352,9 +364,20 @@
 .pngcalc_button.png-calculator-popup-trigger {
   display: inline-block;
   border: 1px solid;
-  padding: 14px;
+  padding: 10px 15px;
+  line-height: 24px;
+  font-size: 16px;
+  font-weight: 700;
   text-transform: none;
-  margin-right: 6px;
+  margin-left: 6px;
+  background-color: transparent;
+  letter-spacing: 0.8px;
+}
+@media screen and (max-width: 980px) {
+  .pngcalc_button.png-calculator-popup-trigger {
+    width: auto;
+    margin-bottom: 0;
+  }
 }
 .pngcalc_button.grey {
   background-color: #bbb;
@@ -432,8 +455,13 @@
 }
 .pngcalc .pngcalc__footer__row span:first-child {
   display: block;
-  margin: 0 auto 0 0;
   font-weight: 400;
+  margin-right: 8px;
+}
+@media screen and (max-width: 980px) {
+  .pngcalc .pngcalc__footer__row span:first-child {
+    margin: 0 auto 0 0;
+  }
 }
 .pngcalc .pngcalc__footer__row span.green {
   color: #76B00A;
@@ -543,7 +571,7 @@
   }
 }
 
-.png-calculator-popup-trigger + .ywctm-inquiry-form-wrapper {
+.single-product .ywctm-inquiry-form-wrapper {
   display: inline-block !important;
 }
 /*!*************************************************************************************************************************!*\

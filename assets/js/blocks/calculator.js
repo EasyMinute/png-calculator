@@ -295,9 +295,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const totalSum = productSum + printSum;
 
         // Update spans
+        document.getElementById('totalProd').textContent = productSum.toFixed(2);
+        document.getElementById('totalPrint').textContent = printSum.toFixed(2);
         document.getElementById('totalPrice').textContent = totalPrice.toFixed(2);
-        document.getElementById('totalProd').textContent = productFinalPrice.toFixed(2);
-        document.getElementById('totalPrint').textContent = printFinalPrice.toFixed(2);
         document.getElementById('totalSum').textContent = totalSum.toFixed(2);
     }
 

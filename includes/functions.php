@@ -27,10 +27,10 @@ add_shortcode( 'png_calculator', 'png_calculator_shortcode' );
 
 function png_calculator_popup_shortcode() {
 	ob_start();
+	echo "<button id='png-calculator-popup-trigger' class='pngcalc_button png-calculator-popup-trigger'>". __('Додати друк', 'pngcalc') ."</button>";
 	echo "<div class='png-modal' id='png-calculator-popup'>";
 	include PNG_CALCULATOR_PATH . 'templates/calculator.php';
 	echo "</div>";
-	echo "<button id='png-calculator-popup-trigger' class='pngcalc_button png-calculator-popup-trigger'>". __('Додати друк', 'pngcalc') ."</button>";
 	return ob_get_clean();
 }
 add_shortcode( 'png_calculator_popup', 'png_calculator_popup_shortcode' );

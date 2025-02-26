@@ -200,21 +200,30 @@ $dtf_koefs           = get_field('dtf_koefs', 'options');
 
                     <label for="user_name" class="pngcalc_label">
                         <span>
-                            <?php echo __('ПІБ', 'pngcalc') ?>
+                            <?php echo __('ПІБ*', 'pngcalc') ?>
                         </span>
-                        <input type="text" name="user_name" class="required" id="user_name">
+                        <div>
+                            <input type="text" name="user_name" class="required" id="user_name">
+                            <span class="not-val-tip"><?php echo __('Введіть коректний ПІБ', 'pngcalc') ?></span>
+                        </div>
                     </label>
                     <label for="user_email" class="pngcalc_label">
                         <span>
-                            <?php echo __('Email', 'pngcalc') ?>
+                            <?php echo __('Email*', 'pngcalc') ?>
                         </span>
-                        <input type="email" name="user_email" class="required-email" id="user_email">
+                        <div>
+                            <input type="email" name="user_email" class="required-email" id="user_email">
+                            <span class="not-val-tip"><?php echo __('Введіть коректний email', 'pngcalc') ?></span>
+                        </div>
                     </label>
                     <label for="user_phone" class="pngcalc_label">
                         <span>
-                            <?php echo __('Телефон', 'pngcalc') ?>
+                            <?php echo __('Телефон*', 'pngcalc') ?>
                         </span>
-                        <input type="tel" name="user_phone" class="required-phone" id="user_phone">
+                        <div>
+                            <input type="tel" name="user_phone" class="required-phone" id="user_phone">
+                            <span class="not-val-tip"><?php echo __('Введіть коректний телефон', 'pngcalc') ?></span>
+                        </div>
                     </label>
 
                     <label for="user_notes" class="pngcalc_label">

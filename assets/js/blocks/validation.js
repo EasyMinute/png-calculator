@@ -20,7 +20,7 @@ $(document).ready(function () {
         }
     }
 
-    $("#png-calculator-form").on("submit", function (e) {
+    $("#submitCalc").on("mouseup", function (e) {
         e.preventDefault();
         e.stopPropagation();
         let isValid = true;
@@ -46,8 +46,8 @@ $(document).ready(function () {
         });
 
         if (isValid) {
-            alert("Form submitted successfully!"); // Replace with actual form submission
-            this.submit();
+            console.log("Form submitted successfully!"); // Replace with actual form submission
+            // $('#png-calculator-form').submit();
         }
     });
 
