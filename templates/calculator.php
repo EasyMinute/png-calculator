@@ -4,6 +4,8 @@ $sublimation_koefs   = get_field('sublimation_koefs', 'options');
 $silk_screen_koefs  = get_field('silk_screen_koefs', 'options');
 $uv_dtf_koefs  = get_field('uv_dtf_koefs', 'options');
 $dtf_koefs           = get_field('dtf_koefs', 'options');
+$additional = get_field('additional', 'options');
+global $post;
 ?>
 
 
@@ -50,23 +52,10 @@ $dtf_koefs           = get_field('dtf_koefs', 'options');
                     </label>
 
 
-	                <?php $additional = get_field('additional', 'options'); ?>
-                    <?php
-                    global $post;
+	                <?php
+                    
                     if(current_user_can('administrator') || $post->post_password): ?>
-
-                        <label class="pngcalc_label select discountGroup">
-                            <span><?php echo __('Група знижок', 'pngcalc') ?></span>
-                            <select name="printDiscounts" class="printDiscounts">
-                                <option value="1"><?php echo __('Без знижки', 'pngcalc') ?></option>
-				                <?php foreach($print_discounts as $discount): ?>
-                                    <option value="<?php echo (100 - $discount['value']) / 100 ?>">
-						                <?php echo $discount['title'] ?>
-                                    </option>
-				                <?php endforeach; ?>
-                            </select>
-                        </label>
-
+                    
 		                <?php if(!empty($additional['urgency'])): ?>
                             <label for="printUrgency" class="pngcalc_label checkbox">
                                 <input type="checkbox" name="printUrgency" id="printUrgency" value="1">
@@ -149,6 +138,22 @@ $dtf_koefs           = get_field('dtf_koefs', 'options');
                         <button class="pngcalc_button" id="addPrint"><?php echo __('Додати друк', 'pngcalc') ?></button>
                         <button class="pngcalc_button grey" id="removePrint"><?php echo __('Видалити друк', 'pngcalc') ?></button>
                     </div>
+
+                    <?php if(current_user_can('administrator') || $post->post_password): ?>
+
+                    <label class="pngcalc_label select discountGroup">
+                        <span><?php echo __('Група знижок', 'pngcalc') ?></span>
+                        <select name="printDiscounts" class="printDiscounts">
+                            <option value="1"><?php echo __('Без знижки', 'pngcalc') ?></option>
+			                <?php foreach($print_discounts as $discount): ?>
+                                <option value="<?php echo (100 - $discount['value']) / 100 ?>">
+					                <?php echo $discount['title'] ?>
+                                </option>
+			                <?php endforeach; ?>
+                        </select>
+                    </label>
+                    
+                     <?php endif; ?>
 
                     <label for="print_final_price" class="pngcalc_label">
                         <span>
