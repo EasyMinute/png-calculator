@@ -161,6 +161,7 @@ function send_calculations_to_crm() {
 //	return $result;
 
 	// Prepare email content
+
 	$email_subject = "Нова заявка на CRM";
 	$email_body = "Отримано нову заявку:\n\n";
 	foreach ($data as $key => $value) {
@@ -182,7 +183,7 @@ function send_calculations_to_crm() {
 	}
 
 	// Send email
-	$admin_email = 'nikyura23@gmail.com'; // Change this if needed
+	$admin_email = $crm_otions['email_to_send'] ?? get_option('admin_email'); // Change this if needed
 	$headers = ['Content-Type: text/plain; charset=UTF-8'];
 	wp_mail($admin_email, $email_subject, $email_body, $headers);
 
