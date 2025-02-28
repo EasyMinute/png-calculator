@@ -160,6 +160,32 @@ function send_calculations_to_crm() {
 
 //	return $result;
 
+	// Prepare email content
+	$email_subject = "Нова заявка на CRM";
+	$email_body = "Отримано нову заявку:\n\n";
+	foreach ($data as $key => $value) {
+		if (is_array($value)) {
+			$email_body .= strtoupper($key) . ":\n";
+			foreach ($value as $sub_key => $sub_value) {
+				if (is_array($sub_value)) {
+					$email_body .= "  " . ucfirst($sub_key) . ":\n";
+					foreach ($sub_value as $item_key => $item_value) {
+						$email_body .= "    " . ucfirst($item_key) . ": " . $item_value . "\n";
+					}
+				} else {
+					$email_body .= "  " . ucfirst($sub_key) . ": " . $sub_value . "\n";
+				}
+			}
+		} else {
+			$email_body .= ucfirst($key) . ": " . $value . "\n";
+		}
+	}
+
+	// Send email
+	$admin_email = 'nikyura23@gmail.com'; // Change this if needed
+	$headers = ['Content-Type: text/plain; charset=UTF-8'];
+	wp_mail($admin_email, $email_subject, $email_body, $headers);
+
 
 
 	// Return the response to the frontend
