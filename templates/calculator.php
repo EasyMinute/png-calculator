@@ -36,7 +36,12 @@ global $post;
                         <span>
                             <?php echo __('Тираж', 'pngcalc') ?>
                         </span>
-                        <input type="number" name="product_quantity" id="product_quantity">
+                        <div>
+                            <input type="number" class="required" name="product_quantity" id="product_quantity">
+                            <span class="not-val-tip">
+                                <?php echo __('Введіть значення') ?>
+                            </span>
+                        </div>
                     </label>
                     <label for="product_price" class="pngcalc_label">
                         <span>

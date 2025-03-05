@@ -268,6 +268,18 @@ function send_calculations_to_crm() {
 		],
 	];
 
+	if (isset($_POST['product_name'])) {
+		$card_data["products"] = [
+			[
+				"name"     => $_POST['product_name'], // назву товару
+				"sku"      => $_POST['product_sku'], // артикул товару
+				"quantity" => $_POST['product_quantity'], // кількість проданого товару
+				"price"    => $_POST['product_price'], // ціна продажу
+				"picture"  => $_POST['product_url'], // зображення товару
+			]
+		];
+	}
+
 	$card_response = keycrm_api_request($api_url, $card_data, $api_key);
 	if (!$card_response || empty($card_response['response']['id'])) {
 		echo json_encode(['error' => 'Failed to create CRM card']);

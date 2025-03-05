@@ -3,6 +3,14 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.pngcalc_button.pngcalc_stepper').forEach(button => {
         button.addEventListener('click', function (e) {
             e.preventDefault()
+
+            const form = document.getElementById('png-calculator-form'); // Replace with your form's ID
+            const formInputs = form.querySelectorAll('#product_quantity')
+            if ([...formInputs].some(input => input.classList.contains('invalid'))) {
+                console.log("Form has invalid fields. Stopping AJAX.");
+                return; // Stop the function
+            }
+
             const step = this.getAttribute('data-step'); // Get the 'data-step' attribute of the button
 
             // Hide all elements with the class 'pngcalc__step'

@@ -74,7 +74,7 @@ function add_hidden_inputs_to_form() {
 				$variation_id = $variation['variation_id'];
 				$variation_obj = wc_get_product($variation_id);
 
-				if ($variation_obj->is_in_stock()) {
+				if ($variation_obj->managing_stock() && $variation_obj->is_in_stock()) {
 					$prices[] = $variation_obj->get_price();
 				}
 			}

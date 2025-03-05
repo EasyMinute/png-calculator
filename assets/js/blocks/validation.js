@@ -20,7 +20,7 @@ $(document).ready(function () {
         }
     }
 
-    $("#submitCalc").on("mouseup", function (e) {
+    $("#submitCalc, .pngcalc_button.pngcalc_stepper").on("mouseup", function (e) {
         e.preventDefault();
         e.stopPropagation();
         let isValid = true;
@@ -45,11 +45,6 @@ $(document).ready(function () {
             if ($(this).hasClass("invalid")) isValid = false;
         });
 
-        if (isValid) {
-            console.log("Form submitted successfully!"); // Replace with actual form submission
-            // $('#png-calculator-form').submit();
-        }
-
         $("#calc_print_files").each(function () {
             var files = this.files;
             var maxFiles = 5;
@@ -69,6 +64,12 @@ $(document).ready(function () {
                 }
             }
         });
+
+        if (isValid) {
+            console.log("Form submitted successfully!"); // Replace with actual form submission
+            // $('#png-calculator-form').submit();
+        }
+
     });
 
     // Remove invalid class when typing
