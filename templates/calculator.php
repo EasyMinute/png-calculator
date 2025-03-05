@@ -16,6 +16,12 @@ global $post;
     </button>
     <div class="container">
         <form id="png-calculator-form" class="pngcalc">
+            <div class="png-calculator__loading" id="png-calculator__loading">
+                <svg width="34" height="35" viewBox="0 0 34 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M32.5 19.3208C32.5 37.3205 2 38.323 2 17.8221C2 -2.67887 32.5 -2.1792 32.5 15.3208" stroke="#76B00A" stroke-width="3"/>
+                </svg>
+                <p><?php echo __('Завантажується запит, будь ласка, не закривайте сторінку') ?></p>
+            </div>
             <div class="pngcalc__step" data-step="calc">
                 <fieldset class="pngcalc__block">
                     <h3 class="pngcalc__block__title">
@@ -236,6 +242,16 @@ global $post;
                             <?php echo __('Коментар', 'pngcalc') ?>
                         </span>
                         <textarea name="user_notes" id="user_notes"></textarea>
+                    </label>
+
+                    <label for="calc_print_files" class="pngcalc_label">
+                        <span>
+                            <?php echo __('Файл', 'pngcalc') ?>
+                        </span>
+                        <div>
+                            <input type="file" name="print_files" id="calc_print_files" multiple accept=".png, .psd, .cdr, .ai, .pdf, .jpeg, .svg, .eps, .jpg">
+                            <span class="not-val-tip"><?php echo __('Не більше 5 файлів не важчих за 10мб', 'pngcalc') ?></span>
+                        </div>
                     </label>
 
                     <div class="pngcalc_button--wrap">

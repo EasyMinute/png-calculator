@@ -8,10 +8,14 @@ document.addEventListener('DOMContentLoaded', function () {
             const totalPrice = document.getElementById('totalPrice')?.textContent.trim() || '0';
             const totalSum = document.getElementById('totalSum')?.textContent.trim() || '0';
             const formInputs = form.querySelectorAll('input')
+            const formLoading = form.querySelector('#png-calculator__loading')
+
             if ([...formInputs].some(input => input.classList.contains('invalid'))) {
                 console.log("Form has invalid fields. Stopping AJAX.");
                 return; // Stop the function
             }
+
+            formLoading.classList.add('active')
 
             // Append them to FormData
             formData.append('totalPrice', totalPrice);
@@ -36,6 +40,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const xhr = new XMLHttpRequest();
 
+            // Append files
+            const fileInput = document.querySelector('#calc_print_files');
+            if (fileInput && fileInput.files.length > 0) {
+                for (let i = 0; i < fileInput.files.length; i++) {
+                    formData.append(`attachments[]`, fileInput.files[i]);
+                }
+            }
+
             // Adding a special parameter 'action' to indicate which action to call
             formData.append('action', 'send_to_crm_action');
 
@@ -46,6 +58,8 @@ document.addEventListener('DOMContentLoaded', function () {
             xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
             xhr.onreadystatechange = function () {
+                formLoading.classList.remove('active')
+
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     // alert('Форму надіслано!');
                     console.log('CRM data sent successfully:', xhr.responseText);

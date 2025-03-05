@@ -49,6 +49,26 @@ $(document).ready(function () {
             console.log("Form submitted successfully!"); // Replace with actual form submission
             // $('#png-calculator-form').submit();
         }
+
+        $("#calc_print_files").each(function () {
+            var files = this.files;
+            var maxFiles = 5;
+            var maxSize = 10 * 1024 * 1024; // 8MB in bytes
+
+            if (files.length > maxFiles) {
+                $("#calc_print_files").addClass('invalid')
+                this.value = ""; // Clear the input
+                return;
+            }
+
+            for (var i = 0; i < files.length; i++) {
+                if (files[i].size > maxSize) {
+                    $("#calc_print_files").addClass('invalid')
+                    this.value = ""; // Clear the input
+                    return;
+                }
+            }
+        });
     });
 
     // Remove invalid class when typing
