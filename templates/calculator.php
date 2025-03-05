@@ -99,7 +99,7 @@ global $post;
                         <label for="printClientProduct" class="pngcalc_label checkbox">
                             <input type="checkbox" name="printClientProduct" id="printClientProduct" value="<?php echo $additional['clients_items'] ?>">
                             <span>
-                                    <?php echo __('Продукція Клієнта') ?>
+                                    <?php echo __('Власна продукція') ?>
                                 </span>
                         </label>
 	                <?php endif; ?>
