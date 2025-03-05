@@ -74,7 +74,8 @@ function add_hidden_inputs_to_form() {
 				$variation_id = $variation['variation_id'];
 				$variation_obj = wc_get_product($variation_id);
 
-				if ($variation_obj->get_manage_stock() && $variation_obj->is_in_stock() && $variation_obj->get_stock_quantity()) {
+
+				if ($variation_obj->get_manage_stock()===true && $variation_obj->is_in_stock() && $variation_obj->get_stock_quantity()) {
 					$prices[] = $variation_obj->get_price();
 				}
 			}
@@ -83,6 +84,8 @@ function add_hidden_inputs_to_form() {
 		} else {
 			$product_price = $product->get_price();
 		}
+
+		$product_price = wc_format_decimal($product_price, 2);
 
 		// Output hidden inputs
 		echo '<input type="hidden" name="product_id" value="' . esc_attr($product_id) . '">';
