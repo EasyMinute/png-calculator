@@ -271,7 +271,7 @@ global $post;
                     <p>
                         <?php echo __("Дякуємо за запит! Форму надіслано на обробку, наш менеджер звʼяжеться з вами найближчим часом.", "pngcalc"); ?>
                     </p>
-                    <button class="pngcalc_button pngcalc_stepper" data-step="calc"><?php echo __('Заповнити знову', 'pngcalc') ?></button>
+                    <button class="pngcalc_button pngcalc_stepper ignore-val" data-step="calc"><?php echo __('Заповнити знову', 'pngcalc') ?></button>
                 </div>
             </div>
         </form>
