@@ -8,6 +8,7 @@ $additional = get_field('additional', 'options');
 global $post;
 ?>
 
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 <section id="png-calculator">
     <button class="modal-closer" id="png-calculator__closer">
@@ -259,6 +260,8 @@ global $post;
                         </div>
                     </label>
 
+                    <div class="g-recaptcha" data-sitekey="6LdxfewqAAAAAJwTHkinZnrgWObu-Zm7yHmrN8Yx"></div>
+
                     <div class="pngcalc_button--wrap">
                         <button class="pngcalc_button pngcalc_stepper" data-step="calc"><?php echo __('Назад', 'pngcalc') ?></button>
                         <button type="submit" class="pngcalc_button" id="submitCalc"><?php echo __('Надіслати', 'pngcalc') ?></button>
@@ -278,7 +281,4 @@ global $post;
     </div>
 </section>
 
-<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
-        async defer>
-</script>
 
