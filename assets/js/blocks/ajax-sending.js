@@ -15,11 +15,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 return; // Stop the function
             }
 
-            if (grecaptcha.getResponse() === "") {
-                e.preventDefault();
-                alert("Будь ласка, заповніть рекапчу!");
-                return
-            }
+
+            // grecaptcha
+            // if (grecaptcha.getResponse() === "") {
+            //     e.preventDefault();
+            //     alert("Будь ласка, заповніть рекапчу!");
+            //     return
+            // }
 
             formLoading.classList.add('active')
 
