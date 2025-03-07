@@ -15,6 +15,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 return; // Stop the function
             }
 
+            if (grecaptcha.getResponse() === "") {
+                e.preventDefault();
+                alert("Please complete the reCAPTCHA.");
+            }
+
             formLoading.classList.add('active')
 
             // Append them to FormData
