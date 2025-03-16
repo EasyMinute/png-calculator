@@ -1,5 +1,6 @@
 <?php
 $print_discounts = get_field( 'print_discounts', 'options' );
+$prod_discounts = get_field( 'prod_discounts', 'options' );
 $sublimation_koefs   = get_field('sublimation_koefs', 'options');
 $silk_screen_koefs  = get_field('silk_screen_koefs', 'options');
 $uv_dtf_koefs  = get_field('uv_dtf_koefs', 'options');
@@ -64,9 +65,19 @@ global $post;
                     </label>
 
 
-	                <?php
-                    
-                    if(current_user_can('administrator') || $post->post_password): ?>
+	                <?php if(current_user_can('administrator') || $post->post_password): ?>
+
+                        <label class="pngcalc_label select discountProd">
+                            <span><?php echo __('Знижка на продукцію', 'pngcalc') ?></span>
+                            <select name="prodDiscounts" class="prodDiscounts">
+                                <option value="1"><?php echo __('Без знижки', 'pngcalc') ?></option>
+				                <?php foreach($prod_discounts as $discount): ?>
+                                    <option value="<?php echo (100 - $discount['value']) / 100 ?>">
+						                <?php echo $discount['title'] ?>
+                                    </option>
+				                <?php endforeach; ?>
+                            </select>
+                        </label>
                     
 		                <?php if(!empty($additional['urgency'])): ?>
                             <label for="printUrgency" class="pngcalc_label checkbox">
@@ -94,6 +105,8 @@ global $post;
                                 </span>
                             </label>
 		                <?php endif; ?>
+
+
 	                <?php endif; ?>
 
 	                <?php if(!empty($additional['clients_items'])): ?>
@@ -106,6 +119,7 @@ global $post;
 	                <?php endif; ?>
 
                 </fieldset>
+
                 <fieldset class="pngcalc__block">
                     <h3 class="pngcalc__block__title">
                         <?php echo __('Друк (нанесення)', 'pngcalc') ?>
@@ -153,17 +167,17 @@ global $post;
 
                     <?php if(current_user_can('administrator') || $post->post_password): ?>
 
-                    <label class="pngcalc_label select discountGroup">
-                        <span><?php echo __('Група знижок', 'pngcalc') ?></span>
-                        <select name="printDiscounts" class="printDiscounts">
-                            <option value="1"><?php echo __('Без знижки', 'pngcalc') ?></option>
-			                <?php foreach($print_discounts as $discount): ?>
-                                <option value="<?php echo (100 - $discount['value']) / 100 ?>">
-					                <?php echo $discount['title'] ?>
-                                </option>
-			                <?php endforeach; ?>
-                        </select>
-                    </label>
+                        <label class="pngcalc_label select discountGroup">
+                            <span><?php echo __('Група знижок', 'pngcalc') ?></span>
+                            <select name="printDiscounts" class="printDiscounts">
+                                <option value="1"><?php echo __('Без знижки', 'pngcalc') ?></option>
+                                <?php foreach($print_discounts as $discount): ?>
+                                    <option value="<?php echo (100 - $discount['value']) / 100 ?>">
+                                        <?php echo $discount['title'] ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </label>
                     
                      <?php endif; ?>
 

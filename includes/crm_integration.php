@@ -252,6 +252,9 @@ function send_calculations_to_crm() {
 		$calc_note .= "\n Повідомлення користувача: " . $_POST["user_notes"] ;
 	}
 
+	$page_url = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'Unknown';
+	$calc_note .= "Сторінка форми: " . $page_url . "\n";
+
 	$formatted_calc_note = $calc_note;
 
 	// Create a new card in KeyCRM

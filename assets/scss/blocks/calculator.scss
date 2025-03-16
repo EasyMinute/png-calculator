@@ -331,7 +331,8 @@
 
     }
 
-    &.discountGroup {
+    &.discountGroup,
+    &.discountProd {
       .select2-container {
         max-width: 150px;
       }

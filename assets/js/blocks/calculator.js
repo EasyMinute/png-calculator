@@ -48,7 +48,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Calculate the final price and sum
         const productFinalPrice = productPrice * koef;
-        const productSum = productFinalPrice * productQuantity;
+        let productSum = productFinalPrice * productQuantity;
+
+        // Apply discount
+        if(document.querySelector('.prodDiscounts')) {
+            const prodDiscount = parseFloat(document.querySelector('.prodDiscounts').value) || 1; // Default to no discount
+            productSum *= prodDiscount;
+        }
+
 
         productFinalPriceInput.value = productFinalPrice.toFixed(2);
         productSumInput.value = productSum.toFixed(2);
@@ -106,6 +113,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Attach the event listener for changes in the printDiscounts dropdown
             $discounts.on('change', calculatePrintCosts);
+
+            // Initialize Select2 for the printDiscounts dropdown
+            const $discountsprod = $(group.querySelector('.prodDiscounts')).select2({
+                placeholder: 'Оберіть знижку',
+                allowClear: true,
+                width: '100%',
+                minimumResultsForSearch: Infinity, // Disable search
+            });
+
+            // Attach the event listener for changes in the printDiscounts dropdown
+            $discountsprod.on('change', calculateFinalPriceAndSum);
         }
 
     }
@@ -221,6 +239,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const printDiscount = parseFloat(document.querySelector('.printDiscounts').value) || 1; // Default to no discount
             finalSum *= printDiscount;
         }
+
+
 
 
         // Update the final price and sum
@@ -341,6 +361,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // });
 
         initializeSelect2(document.querySelector('.discountGroup'))
+        initializeSelect2(document.querySelector('.discountProd'))
     }
 
     initializePrintGroups();
