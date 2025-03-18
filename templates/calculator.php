@@ -67,17 +67,19 @@ global $post;
 
 	                <?php if(current_user_can('administrator') || $post->post_password): ?>
 
-                        <label class="pngcalc_label select discountProd">
-                            <span><?php echo __('Знижка на продукцію', 'pngcalc') ?></span>
-                            <select name="prodDiscounts" class="prodDiscounts">
-                                <option value="1"><?php echo __('Без знижки', 'pngcalc') ?></option>
-				                <?php foreach($prod_discounts as $discount): ?>
-                                    <option value="<?php echo (100 - $discount['value']) / 100 ?>">
-						                <?php echo $discount['title'] ?>
-                                    </option>
-				                <?php endforeach; ?>
-                            </select>
-                        </label>
+                        <?php if(!empty($prod_discounts)): ?>
+                            <label class="pngcalc_label select discountProd">
+                                <span><?php echo __('Знижка на продукцію', 'pngcalc') ?></span>
+                                <select name="prodDiscounts" class="prodDiscounts">
+                                    <option value="0"><?php echo __('Без знижки', 'pngcalc') ?></option>
+                                    <?php foreach($prod_discounts as $discount): ?>
+                                        <option value="<?php echo  $discount['id'] ?>">
+                                            <?php echo $discount['name'] ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </label>
+                        <?php endif; ?>
                     
 		                <?php if(!empty($additional['urgency'])): ?>
                             <label for="printUrgency" class="pngcalc_label checkbox">

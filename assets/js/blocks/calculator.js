@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const productSumInput = document.getElementById('product_sum');
 
     const productPriceKoefs = pngCalculatorData.productPriceKoefs;
+    const productDiscountKoefs = pngCalculatorData.productDiscountKoefs;
+    console.log(productDiscountKoefs);
 
     // Function to calculate final price and sum
     function calculateFinalPriceAndSum() {
@@ -46,16 +48,32 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        // Calculate the final price and sum
-        const productFinalPrice = productPrice * koef;
-        let productSum = productFinalPrice * productQuantity;
+        // Calculate the final price
+        let productFinalPrice = productPrice * koef;
 
-        // Apply discount
-        if(document.querySelector('.prodDiscounts')) {
-            const prodDiscount = parseFloat(document.querySelector('.prodDiscounts').value) || 1; // Default to no discount
-            productSum *= prodDiscount;
+        // ✅ Apply discount if a discount is selected
+        const discountSelect = document.querySelector('.prodDiscounts');
+        if (discountSelect) {
+            const selectedDiscountId = discountSelect.value; // Get selected discount ID
+
+            // Find the selected discount object in productDiscountKoefs
+            const selectedDiscount = productDiscountKoefs.find(discount => discount.id === selectedDiscountId);
+
+            if (selectedDiscount) {
+                // Find the discount value based on price bounds
+                const discountValue = selectedDiscount.values.find(valueRange => {
+                    return productPrice >= parseFloat(valueRange.price_min) && productPrice <= parseFloat(valueRange.price_max);
+                });
+
+                if (discountValue) {
+                    const discountMultiplier = parseFloat(discountValue.value);
+                    productFinalPrice *= discountMultiplier; // Apply discount
+                }
+            }
         }
 
+        // Calculate the final sum
+        let productSum = productFinalPrice * productQuantity;
 
         productFinalPriceInput.value = productFinalPrice.toFixed(2);
         productSumInput.value = productSum.toFixed(2);
