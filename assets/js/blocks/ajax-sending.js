@@ -16,15 +16,18 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
 
-            // grecaptcha
-            // if (grecaptcha.getResponse() === "") {
-            //     e.preventDefault();
-            //     alert("Будь ласка, заповніть рекапчу!");
-            //     return
-            // }
+            grecaptcha
+            if (grecaptcha.getResponse() === "") {
+                e.preventDefault();
+                alert("Будь ласка, заповніть рекапчу!");
+                return
+            }
 
             formLoading.classList.add('active')
 
+            // ✅ Append reCAPTCHA response to FormData
+            formData.append('g-recaptcha-response', recaptchaResponse);
+            // ✅✅✅✅Need to complete backend
             // Append them to FormData
             formData.append('totalPrice', totalPrice);
             formData.append('totalSum', totalSum);
