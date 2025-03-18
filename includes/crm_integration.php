@@ -277,7 +277,7 @@ function send_calculations_to_crm() {
 				"name"     => $_POST['product_name'], // назву товару
 				"sku"      => $_POST['product_sku'], // артикул товару
 				"quantity" => $_POST['product_quantity'], // кількість проданого товару
-				"price"    => $_POST['product_price'], // ціна продажу
+				"price"    => $_POST["totalPrice"], // ціна продажу
 				"picture"  => $_POST['product_url'], // зображення товару
 			]
 		];
