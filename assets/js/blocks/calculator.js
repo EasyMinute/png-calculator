@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (discountValue) {
                     const discountMultiplier = parseFloat(discountValue.value);
-                    productFinalPrice *= discountMultiplier; // Apply discount
+                    productFinalPrice = productPrice * discountMultiplier; // Apply discount
                 }
             }
         }
