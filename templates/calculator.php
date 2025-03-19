@@ -51,29 +51,30 @@ global $post;
                         </span>
                         <input type="number" name="product_price" id="product_price" value="<?php echo $price ?? '' ?>">
                     </label>
+
+	                <?php if(current_user_can('administrator') || $post->post_password): ?>
+
+		                <?php if(!empty($prod_discounts)): ?>
+                            <label class="pngcalc_label select discountProd">
+                                <span><?php echo __('Знижка на продукцію', 'pngcalc') ?></span>
+                                <select name="prodDiscounts" class="prodDiscounts">
+                                    <option value="0"><?php echo __('Без знижки', 'pngcalc') ?></option>
+					                <?php foreach($prod_discounts as $discount): ?>
+                                        <option value="<?php echo  $discount['id'] ?>">
+							                <?php echo $discount['name'] ?>
+                                        </option>
+					                <?php endforeach; ?>
+                                </select>
+                            </label>
+		                <?php endif; ?>
+	                <?php endif; ?>
+
                     <label for="product_final_price" class="pngcalc_label">
                         <span>
                             <?php echo __('Ціна за 1 шт', 'pngcalc') ?>
                         </span>
                         <input type="number" name="product_final_price" id="product_final_price" readonly>
                     </label>
-
-	                <?php if(current_user_can('administrator') || $post->post_password): ?>
-
-                        <?php if(!empty($prod_discounts)): ?>
-                            <label class="pngcalc_label select discountProd">
-                                <span><?php echo __('Знижка на продукцію', 'pngcalc') ?></span>
-                                <select name="prodDiscounts" class="prodDiscounts">
-                                    <option value="0"><?php echo __('Без знижки', 'pngcalc') ?></option>
-                                    <?php foreach($prod_discounts as $discount): ?>
-                                        <option value="<?php echo  $discount['id'] ?>">
-                                            <?php echo $discount['name'] ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </label>
-                        <?php endif; ?>
-	                <?php endif; ?>
 
                     <label for="product_sum" class="pngcalc_label"  style="display: none">
                         <span>
