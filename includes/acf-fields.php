@@ -286,6 +286,7 @@ add_action( 'acf/include_fields', function() {
 							'id' => '',
 						),
 						'choices' => array(
+							'a7' => 'A7 7 х 10 см',
 							'a6' => 'A6 10 х 15 см',
 							'a5' => 'A5 20 х 14 см',
 							'a4' => 'A4 20 х 29см',
@@ -458,6 +459,7 @@ add_action( 'acf/include_fields', function() {
 							'id' => '',
 						),
 						'choices' => array(
+							'a7' => 'A7 7 х 10 см',
 							'a6' => 'A6 10 х 15 см',
 							'a5' => 'A5 20 х 14 см',
 							'a4' => 'A4 20 х 29см',
@@ -629,6 +631,7 @@ add_action( 'acf/include_fields', function() {
 							'id' => '',
 						),
 						'choices' => array(
+							'a7' => 'A7 7 х 10 см',
 							'a6' => 'A6 10 х 15 см',
 							'a5' => 'A5 20 х 14 см',
 							'a4' => 'A4 20 х 29см',
@@ -801,6 +804,7 @@ add_action( 'acf/include_fields', function() {
 							'id' => '',
 						),
 						'choices' => array(
+							'a7' => 'A7 7 х 10 см',
 							'a6' => 'A6 10 х 15 см',
 							'a5' => 'A5 20 х 14 см',
 							'a4' => 'A4 20 х 29см',

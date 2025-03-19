@@ -57,13 +57,6 @@ global $post;
                         </span>
                         <input type="number" name="product_final_price" id="product_final_price" readonly>
                     </label>
-                    <label for="product_sum" class="pngcalc_label"  style="display: none">
-                        <span>
-                            <?php echo __('Ціна за тираж', 'pngcalc') ?>
-                        </span>
-                        <input type="number" name="product_sum" id="product_sum" readonly>
-                    </label>
-
 
 	                <?php if(current_user_can('administrator') || $post->post_password): ?>
 
@@ -80,7 +73,18 @@ global $post;
                                 </select>
                             </label>
                         <?php endif; ?>
-                    
+	                <?php endif; ?>
+
+                    <label for="product_sum" class="pngcalc_label"  style="display: none">
+                        <span>
+                            <?php echo __('Ціна за тираж', 'pngcalc') ?>
+                        </span>
+                        <input type="number" name="product_sum" id="product_sum" readonly>
+                    </label>
+
+
+	                <?php if(current_user_can('administrator') || $post->post_password): ?>
+
 		                <?php if(!empty($additional['urgency'])): ?>
                             <label for="printUrgency" class="pngcalc_label checkbox">
                                 <input type="checkbox" name="printUrgency" id="printUrgency" value="1">
