@@ -141,10 +141,10 @@ global $post;
                                 <select name="printType[]" class="printType">
                                     <option value=""><?php echo __('Оберіть тип', 'pngcalc') ?></option>
                                     <?php if(!empty($dtf_koefs)): ?>
-                                        <option value="dtf"><?php echo __('DTF', 'pngcalc') ?></option>
+                                        <option value="dtf"><?php echo __('DTF (текстиль)', 'pngcalc') ?></option>
                                     <?php endif; ?>
 	                                <?php if(!empty($uv_dtf_koefs)): ?>
-                                        <option value="uvDtf"><?php echo __('UV DTF', 'pngcalc') ?></option>
+                                        <option value="uvDtf"><?php echo __('UV DTF (сувенірна прод.)', 'pngcalc') ?></option>
                                     <?php endif; ?>
 	                                <?php if(!empty($silk_screen_koefs)): ?>
                                         <option value="silkScreen"><?php echo __('Шовкотрафаретний', 'pngcalc') ?></option>
@@ -281,7 +281,34 @@ global $post;
                         </div>
                     </label>
 
-                    <div class="g-recaptcha" data-sitekey="6LdxfewqAAAAAJwTHkinZnrgWObu-Zm7yHmrN8Yx"></div>
+                    <div id="calc-recaptcha" class="g-recaptcha" data-sitekey="6LdxfewqAAAAAJwTHkinZnrgWObu-Zm7yHmrN8Yx"></div>
+
+                    <script>
+                        let myRecaptchaWidgetId;
+
+                        function renderMyRecaptcha() {
+                            myRecaptchaWidgetId = grecaptcha.render("calc-recaptcha", {
+                                sitekey: "6LdxfewqAAAAAJwTHkinZnrgWObu-Zm7yHmrN8Yx"
+                            });
+                        }
+
+                        document.addEventListener("DOMContentLoaded", function () {
+                            document.querySelector("#png-calculator-form").addEventListener("submit", function (e) {
+                                const recaptchaResponse = grecaptcha.getResponse(myRecaptchaWidgetId);
+
+                                if (!recaptchaResponse) {
+
+                                    alert("Будь ласка, заповніть рекапчу!");
+                                    document.querySelector("#png-calculator-form").classList.add('invalidCP')
+                                    return
+                                } else {
+                                    document.querySelector("#png-calculator-form").classList.remove('invalidCP')
+                                }
+                            });
+                        });
+                    </script>
+
+                    <script src="https://www.google.com/recaptcha/api.js?onload=renderMyRecaptcha&render=explicit"></script>
 
                     <div class="pngcalc_button--wrap">
                         <button class="pngcalc_button pngcalc_stepper" data-step="calc"><?php echo __('Назад', 'pngcalc') ?></button>

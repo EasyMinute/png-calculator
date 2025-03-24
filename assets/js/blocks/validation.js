@@ -23,16 +23,20 @@ $(document).ready(function () {
     $("#submitCalc, .pngcalc_button.pngcalc_stepper").on("mouseup", function (e) {
         e.preventDefault();
         e.stopPropagation();
+
         let isValid = true;
 
-        // Validate required fields
-        $(".required").each(function () {
+        // Find the current step
+        let $currentStep = $(this).closest(".pngcalc__step"); // Adjust class if needed
+
+        // Validate only fields in the current step
+        $currentStep.find(".required").each(function () {
             validateField($(this), $(this).val().trim() !== "");
             if ($(this).hasClass("invalid")) isValid = false;
         });
 
         // Validate email
-        $(".required-email").each(function () {
+        $currentStep.find(".required-email").each(function () {
             let email = $(this).val().trim();
             let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             validateField($(this), emailPattern.test(email));
@@ -40,36 +44,36 @@ $(document).ready(function () {
         });
 
         // Validate phone
-        $(".required-phone").each(function () {
+        $currentStep.find(".required-phone").each(function () {
             validateField($(this), Inputmask.isValid($(this).val(), { mask: "+38 (099) 999 99 99" }));
             if ($(this).hasClass("invalid")) isValid = false;
         });
 
-        $("#calc_print_files").each(function () {
+        // Validate file uploads (if applicable in the current step)
+        $currentStep.find("#calc_print_files").each(function () {
             var files = this.files;
             var maxFiles = 5;
-            var maxSize = 10 * 1024 * 1024; // 8MB in bytes
+            var maxSize = 10 * 1024 * 1024; // 10MB
 
             if (files.length > maxFiles) {
-                $("#calc_print_files").addClass('invalid')
-                this.value = ""; // Clear the input
+                $(this).addClass("invalid");
+                this.value = "";
                 return;
             }
 
             for (var i = 0; i < files.length; i++) {
                 if (files[i].size > maxSize) {
-                    $("#calc_print_files").addClass('invalid')
-                    this.value = ""; // Clear the input
+                    $(this).addClass("invalid");
+                    this.value = "";
                     return;
                 }
             }
         });
 
         if (isValid) {
-            console.log("Form submitted successfully!"); // Replace with actual form submission
-            // $('#png-calculator-form').submit();
+            console.log("Current step validated successfully!");
+            // Proceed to the next step or submit the form
         }
-
     });
 
     // Remove invalid class when typing

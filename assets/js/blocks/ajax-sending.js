@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+
     const form = document.getElementById('png-calculator-form'); // Replace with your form's ID
     if (form) {
         form.addEventListener('submit', function (e) {
@@ -15,18 +16,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 return; // Stop the function
             }
 
-
-            grecaptcha
-            if (grecaptcha.getResponse() === "") {
-                e.preventDefault();
-                alert("Будь ласка, заповніть рекапчу!");
-                return
+            if (form.classList.contains('invalidCP')) {
+                console.log("Form has invalidCP. Stopping AJAX.");
+                return; // Stop the function
             }
+
+
+
 
             formLoading.classList.add('active')
 
             // ✅ Append reCAPTCHA response to FormData
-            formData.append('g-recaptcha-response', recaptchaResponse);
+            // formData.append('g-recaptcha-response', recaptchaResponse);
             // ✅✅✅✅Need to complete backend
             // Append them to FormData
             formData.append('totalPrice', totalPrice);
