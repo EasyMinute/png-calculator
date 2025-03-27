@@ -52,7 +52,7 @@ global $post;
                         <input type="number" name="product_price" id="product_price" value="<?php echo $price ?? '' ?>">
                     </label>
 
-	                <?php if(current_user_can('administrator') || $post->post_password): ?>
+	                <?php if(current_user_can('administrator') || current_user_can('subscriber') || $post->post_password): ?>
 
 		                <?php if(!empty($prod_discounts)): ?>
                             <label class="pngcalc_label select discountProd">
@@ -84,7 +84,7 @@ global $post;
                     </label>
 
 
-	                <?php if(current_user_can('administrator') || $post->post_password): ?>
+	                <?php if(current_user_can('administrator') || current_user_can('subscriber') || $post->post_password): ?>
 
 		                <?php if(!empty($additional['urgency'])): ?>
                             <label for="printUrgency" class="pngcalc_label checkbox">
@@ -172,7 +172,7 @@ global $post;
                         <button class="pngcalc_button grey" id="removePrint"><?php echo __('Видалити друк', 'pngcalc') ?></button>
                     </div>
 
-                    <?php if(current_user_can('administrator') || $post->post_password): ?>
+                    <?php if(current_user_can('administrator') || current_user_can('subscriber') || $post->post_password): ?>
 
                         <label class="pngcalc_label select discountGroup">
                             <span><?php echo __('Група знижок', 'pngcalc') ?></span>

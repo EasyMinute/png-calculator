@@ -272,6 +272,9 @@ function send_calculations_to_crm() {
 	$email_subject = "Нова заявка на CRM";
 	$email_body = "Отримано нову заявку:\n\n";
 	$email_body .= $calc_note;
+	$email_body .= "\n\n Контакт: \n Імʼя:" . $full_name;
+	$email_body .= "\n Email: " . $email;
+	$email_body .= "\n Телефон: " . $phone;
 
 
 	// Send email
