@@ -487,6 +487,7 @@
 .pngcalc .pngcalc__footer__totals {
   min-width: -moz-max-content;
   min-width: max-content;
+  margin: 0 0 0 auto;
 }
 .pngcalc .pngcalc__footer__row {
   margin-bottom: 8px !important;
@@ -635,6 +636,10 @@
   display: inline-block !important;
 }
 
+.tape-calculator-block .container {
+  max-width: 1000px;
+}
+
 .tape-calculator {
   width: 100%;
   padding: 32px 0;
@@ -696,6 +701,7 @@
   font-weight: 600;
   width: 100px;
   padding: 0;
+  height: auto;
 }
 /*!*************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/select2/dist/css/select2.css ***!

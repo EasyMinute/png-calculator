@@ -487,6 +487,7 @@
 .pngcalc .pngcalc__footer__totals {
   min-width: -moz-max-content;
   min-width: max-content;
+  margin: 0 0 0 auto;
 }
 .pngcalc .pngcalc__footer__row {
   margin-bottom: 8px !important;

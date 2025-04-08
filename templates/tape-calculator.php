@@ -6,7 +6,9 @@ $tape_price = $tape_calculator['tape_price'] ?? '0';
 $cutting_price = $tape_calculator['cutting_price'] ?? '0';
 ?>
 
-<form action="" id="tape-calculator" class="tape-calculator pngcalc">
+<section class="tape-calculator-block">
+    <div class="container">
+        <form action="" id="tape-calculator" class="tape-calculator pngcalc">
     <div class="hidden_values">
         <input type="hidden" id="tape-distance" value="<?php echo $distance ?>">
         <input type="hidden" id="tape-width" value="<?php echo $tape_width ?>">
@@ -74,3 +76,5 @@ $cutting_price = $tape_calculator['cutting_price'] ?? '0';
         </label>
     </div>
 </form>
+    </div>
+</section>
