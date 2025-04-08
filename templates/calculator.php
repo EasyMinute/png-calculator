@@ -113,7 +113,6 @@ global $post;
                             </label>
 		                <?php endif; ?>
 
-
 	                <?php endif; ?>
 
 	                <?php if(!empty($additional['clients_items'])): ?>
@@ -205,27 +204,34 @@ global $post;
 
 
                 <div class="pngcalc__footer">
-                    <p class="pngcalc__footer__row">
-                        <span><?php echo __('Вартість продукції: ') ?></span>
-                        <span id="totalProd">0</span>
-                        <span>грн</span>
-                    </p>
-                    <p class="pngcalc__footer__row">
-                        <span><?php echo __('Вартість за друк: ') ?></span>
-                        <span id="totalPrint">0</span>
-                        <span>грн</span>
-                    </p>
-                    <p class="pngcalc__footer__row">
-                        <span><?php echo __('Вартість одиниці: ') ?></span>
-                        <span class="green" id="totalPrice">0</span>
-                        <span class="green">грн</span>
-                    </p>
-                    <p class="pngcalc__footer__row">
-                        <span><?php echo __('Загальна вартість: ') ?></span>
-                        <span class="green" id="totalSum">0</span>
-                        <span class="green">грн</span>
-                    </p>
-                    <button class="pngcalc_button pngcalc_stepper" data-step="user" id="nextStep"><?php echo __('Надіслати розрахунок', 'pngcalc') ?></button>
+	                <?php if(!(current_user_can('administrator') || current_user_can('subscriber') || $post->post_password)): ?>
+                        <p class="pngcalc__footer__message">
+			                <?php echo __('Увага! Прорахунок є орієнтовним, точну ціну озвучить менеджер після опрацювання запиту.') ?>
+                        </p>
+	                <?php endif; ?>
+                    <div class="pngcalc__footer__totals">
+                        <p class="pngcalc__footer__row">
+                            <span><?php echo __('Вартість продукції: ') ?></span>
+                            <span id="totalProd">0</span>
+                            <span>грн</span>
+                        </p>
+                        <p class="pngcalc__footer__row">
+                            <span><?php echo __('Вартість за друк: ') ?></span>
+                            <span id="totalPrint">0</span>
+                            <span>грн</span>
+                        </p>
+                        <p class="pngcalc__footer__row">
+                            <span><?php echo __('Вартість одиниці: ') ?></span>
+                            <span class="green" id="totalPrice">0</span>
+                            <span class="green">грн</span>
+                        </p>
+                        <p class="pngcalc__footer__row">
+                            <span><?php echo __('Загальна вартість: ') ?></span>
+                            <span class="green" id="totalSum">0</span>
+                            <span class="green">грн</span>
+                        </p>
+                        <button class="pngcalc_button pngcalc_stepper" data-step="user" id="nextStep"><?php echo __('Надіслати розрахунок', 'pngcalc') ?></button>
+                    </div>
                 </div>
 
 

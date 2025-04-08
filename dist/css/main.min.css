@@ -463,14 +463,30 @@
 .pngcalc .pngcalc__footer {
   margin: 0 0 0 auto;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
   padding-top: 24px;
 }
 @media screen and (max-width: 980px) {
   .pngcalc .pngcalc__footer {
     width: 100%;
+    flex-direction: column;
   }
+}
+.pngcalc .pngcalc__footer__message {
+  max-width: 50%;
+  font-size: 14px;
+  font-weight: 600;
+  width: 100%;
+}
+@media screen and (max-width: 980px) {
+  .pngcalc .pngcalc__footer__message {
+    max-width: 100%;
+  }
+}
+.pngcalc .pngcalc__footer__totals {
+  min-width: -moz-max-content;
+  min-width: max-content;
 }
 .pngcalc .pngcalc__footer__row {
   margin-bottom: 8px !important;
@@ -617,6 +633,69 @@
 
 .single-product .ywctm-inquiry-form-wrapper {
   display: inline-block !important;
+}
+
+.tape-calculator {
+  width: 100%;
+  padding: 32px 0;
+}
+@media screen and (max-width: 980px) {
+  .tape-calculator {
+    padding: 24px 0;
+  }
+}
+.tape-calculator__head {
+  margin-bottom: 14px;
+}
+.tape-calculator__head h3 {
+  font-weight: 600;
+}
+.tape-calculator__body {
+  width: 100%;
+  margin-bottom: 14px;
+}
+.tape-calculator__row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+@media screen and (max-width: 980px) {
+  .tape-calculator__row {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 0;
+  }
+}
+.tape-calculator__row .pngcalc_label span {
+  margin-right: 4px;
+}
+.tape-calculator__footer {
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 0 0 0 auto;
+}
+@media screen and (max-width: 980px) {
+  .tape-calculator__footer {
+    width: 100%;
+  }
+}
+.tape-calculator__footer .pngcalc_label.total_label {
+  margin-bottom: 4px;
+  font-size: 18px;
+  width: 100%;
+}
+.tape-calculator__footer .pngcalc_label.total_label span {
+  display: inline-block;
+  margin-right: 8px;
+}
+.tape-calculator__footer .pngcalc_label.total_label .total-input {
+  text-align: right;
+  font-weight: 600;
+  width: 100px;
+  padding: 0;
 }
 /*!*************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/select2/dist/css/select2.css ***!

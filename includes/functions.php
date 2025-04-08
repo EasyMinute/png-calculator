@@ -15,6 +15,12 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 		'menu_title'	=> 'CRM Options',
 		'parent_slug'	=> 'png-calculator',
 	));
+
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Tape Calculator',
+		'menu_title'	=> 'Tape Calculator',
+		'parent_slug'	=> 'png-calculator',
+	));
 }
 
 // Shortcode for Calculator
@@ -24,6 +30,14 @@ function png_calculator_shortcode() {
 	return ob_get_clean();
 }
 add_shortcode( 'png_calculator', 'png_calculator_shortcode' );
+
+// Shortcode for Calculator
+function png_tape_calculator_shortcode() {
+	ob_start();
+	include PNG_CALCULATOR_PATH . 'templates/tape-calculator.php';
+	return ob_get_clean();
+}
+add_shortcode( 'png_tape_calculator', 'png_tape_calculator_shortcode' );
 
 function png_calculator_popup_shortcode() {
 	ob_start();

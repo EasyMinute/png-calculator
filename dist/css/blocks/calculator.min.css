@@ -463,14 +463,30 @@
 .pngcalc .pngcalc__footer {
   margin: 0 0 0 auto;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
   padding-top: 24px;
 }
 @media screen and (max-width: 980px) {
   .pngcalc .pngcalc__footer {
     width: 100%;
+    flex-direction: column;
   }
+}
+.pngcalc .pngcalc__footer__message {
+  max-width: 50%;
+  font-size: 14px;
+  font-weight: 600;
+  width: 100%;
+}
+@media screen and (max-width: 980px) {
+  .pngcalc .pngcalc__footer__message {
+    max-width: 100%;
+  }
+}
+.pngcalc .pngcalc__footer__totals {
+  min-width: -moz-max-content;
+  min-width: max-content;
 }
 .pngcalc .pngcalc__footer__row {
   margin-bottom: 8px !important;
