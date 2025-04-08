@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Get body input values
             const printWidth = parseFloat(document.getElementById('print_width').value) || 0;
             const printLength = parseFloat(document.getElementById('print_length').value) || 0;
-            const printQuantity = parseInt(document.getElementById('print_quantity').value) || 1;
+            const printQuantity = parseInt(document.getElementById('print_quantity').value) || 0;
             const cuttingEnabled = cuttingCheckbox.checked;
 
             // Predefine Variables for calculations
@@ -54,8 +54,8 @@ document.addEventListener('DOMContentLoaded', function () {
             columsQuantOrigin = Math.ceil(printQuantity / printsQuantOrigin)
             columsQuantReverse = Math.ceil(printQuantity / printsQuantReverse)
 
-            linearLengthOrigin = columsQuantOrigin + (effectiveLength / 100)
-            linearLengthReverse = columsQuantReverse + (effectiveWidth / 100)
+            linearLengthOrigin = columsQuantOrigin * (effectiveLength / 100)
+            linearLengthReverse = columsQuantReverse * (effectiveWidth / 100)
 
             optimalLength = Math.min(linearLengthOrigin, linearLengthReverse)
 
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('print_orientation').value = optimalOrientation;
             document.getElementById('tape_length').value = tapeLength.toFixed(2) + ' мп';
             document.getElementById('total_tape_price').value = totalTapePrice.toFixed(2) + ' грн';
-            document.getElementById('print_price').value = printPrice.toFixed(2) + ' грн';
+            document.getElementById('print_price').value = (parseFloat(printPrice.toFixed(2)) || '0.00') + ' грн';
         }
     }
 });
