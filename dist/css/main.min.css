@@ -478,6 +478,7 @@
   font-size: 14px;
   font-weight: 600;
   width: 100%;
+  color: #c90000;
 }
 @media screen and (max-width: 980px) {
   .pngcalc .pngcalc__footer__message {

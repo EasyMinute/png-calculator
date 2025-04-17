@@ -206,7 +206,7 @@ global $post;
                 <div class="pngcalc__footer">
 	                <?php if(!(current_user_can('administrator') || current_user_can('subscriber') || $post->post_password)): ?>
                         <p class="pngcalc__footer__message">
-			                <?php echo __('Увага! Прорахунок є орієнтовним, точну ціну озвучить менеджер після опрацювання запиту.') ?>
+			                <?php echo __('Увага! Розрахунок є орієнтовним, точну ціну озвучить менеджер після опрацювання запиту.') ?>
                         </p>
 	                <?php endif; ?>
                     <div class="pngcalc__footer__totals">
