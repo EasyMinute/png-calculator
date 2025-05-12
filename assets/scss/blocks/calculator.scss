@@ -209,6 +209,20 @@
       margin-top: 4px;
     }
 
+    &.sizes_inputs {
+      width: 100%;
+      max-width: calc(50% - 4px);
+
+      input {
+        width: 100%;
+        max-width: 100%;
+
+        &.hidden {
+          display: none;
+        }
+      }
+    }
+
     input,
     textarea {
       resize: none !important;

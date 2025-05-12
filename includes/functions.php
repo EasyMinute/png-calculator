@@ -23,6 +23,33 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 	));
 }
 
+function register_print_types_cpt() {
+	$labels = array(
+		'name'                  => 'Типи друку',
+		'singular_name'         => 'Тип друку',
+		'menu_name'             => 'Типи друку',
+		'name_admin_bar'        => 'Тип друку',
+		'not_found'             => 'Не знайдено',
+	);
+
+	$args = array(
+		'labels'                => $labels,
+		'public'                => true,
+		'show_in_menu'          => true,
+		'menu_position'         => 20,
+		'menu_icon'             => 'dashicons-format-image',
+		'supports'              => array('title', 'editor', 'thumbnail'),
+		'has_archive'           => true,
+		'rewrite'               => array('slug' => 'print-types'),
+		'show_in_rest'          => true,
+	);
+
+	register_post_type('print_type', $args);
+}
+add_action('init', 'register_print_types_cpt');
+
+
+
 // Shortcode for Calculator
 function png_calculator_shortcode() {
 	ob_start();

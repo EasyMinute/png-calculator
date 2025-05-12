@@ -15,9 +15,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const productPriceKoefs = pngCalculatorData.productPriceKoefs;
     const productDiscountKoefs = pngCalculatorData.productDiscountKoefs;
-    console.log(productDiscountKoefs);
 
-    // Function to calculate final price and sum
+    // console.log(printTypeOptions);
+
+    // !! Only left column price and products sum!!! Function to calculate final price and sum
     function calculateFinalPriceAndSum() {
 
         const productQuantity = parseInt(productQuantityInput.value) || 0;
@@ -147,20 +148,125 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Function to populate the format dropdown based on selected type
-    function populatePrintFormats(printType, formatSelect) {
-        const koefs = koefsMap[printType] || [];
-        const $formatSelect = $(formatSelect);
-        console.log('koefs', koefs)
+    // function populatePrintFormats(printType, formatSelect) {
+    //     const koefs = koefsMap[printType] || [];
+    //     const $formatSelect = $(formatSelect);
+    //     console.log('koefs', koefs)
+    //
+    //     $formatSelect.empty(); // Clear existing options
+    //
+    //     koefs.forEach(({ format }) => {
+    //         const option = new Option(format.label, format.value, false, false);
+    //         $formatSelect.append(option);
+    //     });
+    //
+    //     $formatSelect.trigger('change'); // Refresh Select2 with new options
+    // }
 
-        $formatSelect.empty(); // Clear existing options
 
-        koefs.forEach(({ format }) => {
-            const option = new Option(format.label, format.value, false, false);
-            $formatSelect.append(option);
-        });
+    function tapePrintCalculate(printWidth, printLength, printType) {
+        // Get body input values
+        const printQuantity = parseInt(document.getElementById('product_quantity').value) || 0;
 
-        $formatSelect.trigger('change'); // Refresh Select2 with new options
+        // Exit early if printType not found
+        if (!printTypeOptions[printType]) return 0;
+
+        const typeOptions = printTypeOptions[printType];
+
+        // Convert all numeric inputs from strings to floats
+        const distance = parseFloat(typeOptions.distance) || 0;
+        const tapeWidth = parseFloat(typeOptions.tape_width) || 0;
+        const tapePrice = parseFloat(typeOptions.tape_price) || 0;
+        printWidth = parseFloat(printWidth) || 0;
+        printLength = parseFloat(printLength) || 0;
+
+        // Predefine Variables for calculations
+        let printsQuantOrigin = 0;
+        let printsQuantReverse = 0;
+        let columsQuantOrigin = 0;
+        let columsQuantReverse = 0;
+        let linearLengthOrigin = 0;
+        let linearLengthReverse = 0;
+        let optimalLength = 0;
+        let tapeLength = 0;
+        let printPrice = 0;
+
+        // Calculations
+        const effectiveWidth = printWidth + distance;
+        const effectiveLength = printLength + distance;
+
+
+        printsQuantOrigin = Math.floor(tapeWidth / effectiveWidth);
+        printsQuantReverse = Math.floor(tapeWidth / effectiveLength);
+
+
+        columsQuantOrigin = Math.ceil(printQuantity / printsQuantOrigin || 1);
+        columsQuantReverse = Math.ceil(printQuantity / printsQuantReverse || 1);
+
+        linearLengthOrigin = columsQuantOrigin * (effectiveLength / 100); // in meters
+        linearLengthReverse = columsQuantReverse * (effectiveWidth / 100); // in meters
+
+        optimalLength = Math.min(linearLengthOrigin, linearLengthReverse);
+
+
+        tapeLength = optimalLength;
+        const totalTapePrice = tapeLength * tapePrice;
+        printPrice = totalTapePrice / printQuantity;
+
+        let applyPrice = 0;
+        // Add applying_price (per-item addition)
+        if (Array.isArray(typeOptions.applying_price)) {
+            for (let range of typeOptions.applying_price) {
+                const min = parseInt(range.quantity_min);
+                const max = parseInt(range.quantity_max);
+                const price = parseFloat(range.price);
+
+                if (printQuantity >= min && printQuantity <= max) {
+
+                    applyPrice = price / printQuantity;
+                    break;
+                }
+            }
+        }
+
+        // Final price per print
+        printPrice += applyPrice;
+
+        return printPrice;
     }
+
+
+    function changeSizes() {
+        const selects = document.querySelectorAll('.printFormat');
+
+        selects.forEach(function(select) {
+            const selectedOption = select.options[select.selectedIndex];
+            const value = selectedOption.value;
+
+            const group = select.closest('.pngcalc__block__group');
+            const widthInput = group.querySelector('input.weight');
+            const lengthInput = group.querySelector('input.length');
+
+            if (value === 'custom') {
+                widthInput.value = 0;
+                lengthInput.value = 0;
+
+                widthInput.classList.remove('hidden');
+                lengthInput.classList.remove('hidden');
+            } else {
+                const width = selectedOption.getAttribute('data-width');
+                const length = selectedOption.getAttribute('data-leght'); // Note: 'data-leght' as in your HTML
+
+                widthInput.value = width || 0;
+                lengthInput.value = length || 0;
+
+                widthInput.classList.add('hidden');
+                lengthInput.classList.add('hidden');
+            }
+        });
+    }
+
+
 
     // Function to calculate and update the print costs
     function calculatePrintCosts() {
@@ -179,25 +285,29 @@ document.addEventListener('DOMContentLoaded', function () {
         printGroups.forEach(group => {
             const printType = $(group.querySelector('.printType')).val();
             const printFormat = $(group.querySelector('.printFormat')).val();
+            const printWidth = $(group.querySelector('.weight')).val();
+            const printLength = $(group.querySelector('.length')).val();
+            totalPrice = tapePrintCalculate(printWidth, printLength, printType)
 
-            if (!printType || !printFormat) return;
 
-            const koefs = koefsMap[printType] || [];
-            const formatData = koefs.find(item => item.format.value === printFormat);
-
-            if (!formatData) return;
-
-            const priceData = formatData.products_price;
-            const matchedKoef = priceData.find(priceRange => {
-                return (
-                    productQuantity >= parseInt(priceRange.quantity_min) &&
-                    productQuantity <= parseInt(priceRange.quantity_max)
-                );
-            });
-
-            if (matchedKoef) {
-                totalPrice += parseFloat(matchedKoef.koef);
-            }
+            // if (!printType || !printFormat) return;
+            //
+            // const koefs = koefsMap[printType] || [];
+            // const formatData = koefs.find(item => item.format.value === printFormat);
+            //
+            // if (!formatData) return;
+            //
+            // const priceData = formatData.products_price;
+            // const matchedKoef = priceData.find(priceRange => {
+            //     return (
+            //         productQuantity >= parseInt(priceRange.quantity_min) &&
+            //         productQuantity <= parseInt(priceRange.quantity_max)
+            //     );
+            // });
+            //
+            // if (matchedKoef) {
+            //     totalPrice += parseFloat(matchedKoef.koef);
+            // }
         });
 
         const baseFinalPrice = totalPrice.toFixed(2); // Base price per item
@@ -279,13 +389,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const printTypeSelect = newGroup.querySelector('.printType');
         const printFormatSelect = newGroup.querySelector('.printFormat');
+        const printSizesInputWeight = newGroup.querySelector('.sizes_inputs_input.weight');
+        const printSizesInputLength = newGroup.querySelector('.sizes_inputs_input.length');
 
         $(printTypeSelect).on('change', function () {
-            populatePrintFormats(printTypeSelect.value, printFormatSelect);
+            // populatePrintFormats(printTypeSelect.value, printFormatSelect);
             calculatePrintCosts();
         });
 
-        $(printFormatSelect).on('change', calculatePrintCosts);
+        $(printSizesInputWeight).on('change', function () {
+            calculatePrintCosts();
+        });
+        $(printSizesInputLength).on('change', function () {
+            calculatePrintCosts();
+        });
+        $(printSizesInputWeight).on('input', function () {
+            calculatePrintCosts();
+        });
+        $(printSizesInputLength).on('input', function () {
+            calculatePrintCosts();
+        });
+
+        $(printFormatSelect).on('change', function() {
+            changeSizes();
+            calculatePrintCosts();
+        });
+
         productQuantityInput.addEventListener('input', calculatePrintCosts);
 
         printGroupsContainer.appendChild(newGroup);
@@ -348,7 +477,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
     createPrintGroup();
-
     removePrintButton.addEventListener('click', function (e) {
         e.preventDefault();
         if (currentPrints > 1) {
@@ -359,10 +487,13 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+
+    //Discounts handler
     if(document.querySelector('.printDiscounts')) {
         document.querySelector('.printDiscounts').addEventListener('change', calculatePrintCosts);
     }
 
+    // Checkbox handler
     if(document.querySelectorAll('.pngcalc_label.checkbox input[type="checkbox"]')) {
         document.querySelectorAll('.pngcalc_label.checkbox input[type="checkbox"]').forEach(checkbox => {
             checkbox.addEventListener('change', calculatePrintCosts);

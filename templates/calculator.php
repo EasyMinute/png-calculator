@@ -6,6 +6,14 @@ $silk_screen_koefs  = get_field('silk_screen_koefs', 'options');
 $uv_dtf_koefs  = get_field('uv_dtf_koefs', 'options');
 $dtf_koefs           = get_field('dtf_koefs', 'options');
 $additional = get_field('additional', 'options');
+
+$print_formats = get_field('print_formats', 'options');
+$print_types = get_posts(array(
+	'post_type'      => 'print_type',
+	'posts_per_page' => -1, // get all
+	'orderby'        => 'date',
+	'order'          => 'DESC',
+));
 global $post;
 ?>
 
@@ -138,26 +146,38 @@ global $post;
                             <label class="pngcalc_label select">
                                 <span class="hidden"><?php echo __('Тип друку', 'pngcalc') ?></span>
                                 <select name="printType[]" class="printType">
-                                    <option value=""><?php echo __('Оберіть тип', 'pngcalc') ?></option>
-                                    <?php if(!empty($dtf_koefs)): ?>
-                                        <option value="dtf"><?php echo __('DTF (текстиль)', 'pngcalc') ?></option>
-                                    <?php endif; ?>
-	                                <?php if(!empty($uv_dtf_koefs)): ?>
-                                        <option value="uvDtf"><?php echo __('UV DTF (сувенірна прод.)', 'pngcalc') ?></option>
-                                    <?php endif; ?>
-	                                <?php if(!empty($silk_screen_koefs)): ?>
-                                        <option value="silkScreen"><?php echo __('Шовкотрафаретний', 'pngcalc') ?></option>
-                                    <?php endif; ?>
-	                                <?php if(!empty($sublimation_koefs)): ?>
-                                        <option value="sublimation"><?php echo __('Сублімаційний', 'pngcalc') ?></option>
-                                    <?php endif; ?>
+                                    <option value=""><?php echo __('Оберіть тип друку', 'pngcalc') ?></option>
+                                    <?php foreach ( $print_types as $post ) : ?>
+                                        <?php setup_postdata( $post ); ?>
+
+                                        <option value="type_<?php echo get_the_ID($post) ?>">
+                                            <?php echo get_the_title($post) ?>
+                                        </option>
+
+                                    <?php endforeach; ?>
+                                    <?php wp_reset_postdata(); ?>
                                 </select>
                             </label>
                             <label class="pngcalc_label select">
                                 <span class="hidden"><?php echo __('Формат друку', 'pngcalc') ?></span>
                                 <select name="printFormat[]" class="printFormat">
                                     <option value=""><?php echo __('Оберіть формат', 'pngcalc') ?></option>
+                                    <option value="custom"><?php echo __('Власний розмір', 'pngcalc') ?></option>
+                                    <?php foreach($print_formats as $item): ?>
+                                        <option value="<?php echo $item['id'] ?>" data-width="<?php echo $item['width'] ?>" data-leght="<?php echo $item['length'] ?>">
+	                                        <?php echo $item['name'] ?>
+                                        </option>
+                                    <?php endforeach; ?>
                                 </select>
+                            </label>
+
+                            <label class="pngcalc_label sizes_inputs">
+
+                                <input type="number" class="sizes_inputs_input hidden weight" placeholder="<?php echo __('Ширина', 'pngcalc') ?>" name="print_width[]"  value="">
+                            </label>
+                            <label class="pngcalc_label sizes_inputs">
+
+                                <input type="number" class="sizes_inputs_input hidden length" placeholder="<?php echo __('Довжина', 'pngcalc') ?>" name="print_length[]" value="">
                             </label>
                         </div>
                     </div>
