@@ -180,6 +180,10 @@ document.addEventListener('DOMContentLoaded', function () {
         printWidth = parseFloat(printWidth) || 0;
         printLength = parseFloat(printLength) || 0;
 
+        console.log('distance', distance)
+        console.log('tapeWidth', tapeWidth)
+        console.log('tapePrice', tapePrice)
+
         // Predefine Variables for calculations
         let printsQuantOrigin = 0;
         let printsQuantReverse = 0;
@@ -211,7 +215,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         tapeLength = optimalLength;
         const totalTapePrice = tapeLength * tapePrice;
-        printPrice = totalTapePrice / printQuantity;
+        printPrice = totalTapePrice;
+
+        console.log('tapeLength', tapeLength)
+        console.log('printPrice', printPrice)
 
         let applyPrice = 0;
         // Add applying_price (per-item addition)
@@ -223,7 +230,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (printQuantity >= min && printQuantity <= max) {
 
-                    applyPrice = price / printQuantity;
+                    applyPrice = price;
+
+                    console.log('наклад price', price)
+                    console.log('printQuantity', printQuantity)
+                    console.log('applyPrice', applyPrice)
                     break;
                 }
             }
